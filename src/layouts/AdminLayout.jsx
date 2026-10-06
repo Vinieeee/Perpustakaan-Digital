@@ -41,11 +41,6 @@ function AdminLayout() {
             icon: "📚"
         },
         {
-            label: "Tambah Buku",
-            path: "/admin/buku/tambah",
-            icon: "➕"
-        },
-        {
             label: "Pesan",
             path: "/admin/pesan",
             icon: "✉️",
