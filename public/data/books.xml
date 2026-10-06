@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<modsCollection
+    xmlns="http://www.loc.gov/mods/v3"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:slims="http://slims.web.id"
+    xsi:schemaLocation="
+        http://www.loc.gov/mods/v3
+        http://www.loc.gov/standards/mods/v3/mods-3-3.xsd
+    ">
+
+    <!-- BUKU 1 -->
+    <mods ID="8097">
+
+        <titleInfo>
+            <title>
+                Advertising and promotion an integrated marketing communications perspective
+            </title>
+        </titleInfo>
+
+        <name type="personal">
+            <namePart>
+                George E. Belch
+            </namePart>
+        </name>
+
+        <name type="personal">
+            <namePart>
+                Michael A. Belch
+            </namePart>
+        </name>
+
+        <typeOfResource>
+            text
+        </typeOfResource>
+
+        <genre>
+            Book
+        </genre>
+
+        <originInfo>
+            <publisher>
+                McGraw-Hill
+            </publisher>
+
+            <dateIssued>
+                2013
+            </dateIssued>
+        </originInfo>
+
+        <language>
+            <languageTerm type="text">
+                English
+            </languageTerm>
+        </language>
+
+        <classification>
+            Marketing
+        </classification>
+
+        <identifier type="local">
+            8097
+        </identifier>
+
+        <abstract>
+            Buku mengenai advertising dan promotion
+            serta integrated marketing communications.
+        </abstract>
+
+    </mods>
+
+
+    <!-- BUKU 2 -->
+    <mods ID="8098">
+
+        <titleInfo>
+            <title>
+                Marketing Management
+            </title>
+        </titleInfo>
+
+        <name type="personal">
+            <namePart>
+                Philip Kotler
+            </namePart>
+        </name>
+
+        <name type="personal">
+            <namePart>
+                Kevin Lane Keller
+            </namePart>
+        </name>
+
+        <typeOfResource>
+            text
+        </typeOfResource>
+
+        <genre>
+            Book
+        </genre>
+
+        <originInfo>
+            <publisher>
+                Pearson
+            </publisher>
+
+            <dateIssued>
+                2016
+            </dateIssued>
+        </originInfo>
+
+        <language>
+            <languageTerm type="text">
+                English
+            </languageTerm>
+        </language>
+
+        <classification>
+            Marketing
+        </classification>
+
+        <identifier type="local">
+            8098
+        </identifier>
+
+        <abstract>
+            Buku yang membahas konsep dan strategi
+            manajemen pemasaran secara komprehensif.
+        </abstract>
+
+    </mods>
+
+
+    <!-- BUKU 3 -->
+    <mods ID="8099">
+
+        <titleInfo>
+            <title>
+                Management Information Systems
+            </title>
+        </titleInfo>
+
+        <name type="personal">
+            <namePart>
+                Kenneth C. Laudon
+            </namePart>
+        </name>
+
+        <name type="personal">
+            <namePart>
+                Jane P. Laudon
+            </namePart>
+        </name>
+
+        <typeOfResource>
+            text
+        </typeOfResource>
+
+        <genre>
+            Book
+        </genre>
+
+        <originInfo>
+            <publisher>
+                Pearson
+            </publisher>
+
+            <dateIssued>
+                2018
+            </dateIssued>
+        </originInfo>
+
+        <language>
+            <languageTerm type="text">
+                English
+            </languageTerm>
+        </language>
+
+        <classification>
+            Information Systems
+        </classification>
+
+        <identifier type="local">
+            8099
+        </identifier>
+
+        <abstract>
+            Buku mengenai sistem informasi manajemen
+            dan penerapannya dalam organisasi bisnis.
+        </abstract>
+
+    </mods>
+
+
+    <!-- BUKU 4 -->
+    <mods ID="8100">
+
+        <titleInfo>
+            <title>
+                Database System Concepts
+            </title>
+        </titleInfo>
+
+        <name type="personal">
+            <namePart>
+                Abraham Silberschatz
+            </namePart>
+        </name>
+
+        <name type="personal">
+            <namePart>
+                Henry F. Korth
+            </namePart>
+        </name>
+
+        <name type="personal">
+            <namePart>
+                S. Sudarshan
+            </namePart>
+        </name>
+
+        <typeOfResource>
+            text
+        </typeOfResource>
+
+        <genre>
+            Book
+        </genre>
+
+        <originInfo>
+            <publisher>
+                McGraw-Hill
+            </publisher>
+
+            <dateIssued>
+                2019
+            </dateIssued>
+        </originInfo>
+
+        <language>
+            <languageTerm type="text">
+                English
+            </languageTerm>
+        </language>
+
+        <classification>
+            Database
+        </classification>
+
+        <identifier type="local">
+            8100
+        </identifier>
+
+        <abstract>
+            Buku yang membahas konsep database,
+            desain database, transaksi, dan sistem
+            manajemen basis data.
+        </abstract>
+
+    </mods>
+
+
+    <!-- BUKU 5 -->
+    <mods ID="8101">
+
+        <titleInfo>
+            <title>
+                Computer Networking
+            </title>
+        </titleInfo>
+
+        <name type="personal">
+            <namePart>
+                Andrew S. Tanenbaum
+            </namePart>
+        </name>
+
+        <name type="personal">
+            <namePart>
+                David J. Wetherall
+            </namePart>
+        </name>
+
+        <typeOfResource>
+            text
+        </typeOfResource>
+
+        <genre>
+            Book
+        </genre>
+
+        <originInfo>
+            <publisher>
+                Pearson
+            </publisher>
+
+            <dateIssued>
+                2017
+            </dateIssued>
+        </originInfo>
+
+        <language>
+            <languageTerm type="text">
+                English
+            </languageTerm>
+        </language>
+
+        <classification>
+            Computer Networks
+        </classification>
+
+        <identifier type="local">
+            8101
+        </identifier>
+
+        <abstract>
+            Buku mengenai konsep jaringan komputer,
+            protokol jaringan, arsitektur jaringan,
+            dan komunikasi data.
+        </abstract>
+
+    </mods>
+
+
+    <!-- BUKU 6 -->
+    <mods ID="8102">
+
+        <titleInfo>
+            <title>
+                Object-Oriented Analysis and Design
+            </title>
+        </titleInfo>
+
+        <name type="personal">
+            <namePart>
+                Grady Booch
+            </namePart>
+        </name>
+
+        <name type="personal">
+            <namePart>
+                Robert A. Maksimchuk
+            </namePart>
+        </name>
+
+        <typeOfResource>
+            text
+        </typeOfResource>
+
+        <genre>
+            Book
+        </genre>
+
+        <originInfo>
+            <publisher>
+                Addison-Wesley
+            </publisher>
+
+            <dateIssued>
+                2007
+            </dateIssued>
+        </originInfo>
+
+        <language>
+            <languageTerm type="text">
+                English
+            </languageTerm>
+        </language>
+
+        <classification>
+            Programming
+        </classification>
+
+        <identifier type="local">
+            8102
+        </identifier>
+
+        <abstract>
+            Buku mengenai analisis dan perancangan
+            berorientasi objek dalam pengembangan
+            perangkat lunak.
+        </abstract>
+
+    </mods>
+
+
+    <!-- BUKU 7 -->
+    <mods ID="8103">
+
+        <titleInfo>
+            <title>
+                Python Crash Course
+            </title>
+        </titleInfo>
+
+        <name type="personal">
+            <namePart>
+                Eric Matthes
+            </namePart>
+        </name>
+
+        <typeOfResource>
+            text
+        </typeOfResource>
+
+        <genre>
+            Book
+        </genre>
+
+        <originInfo>
+            <publisher>
+                No Starch Press
+            </publisher>
+
+            <dateIssued>
+                2019
+            </dateIssued>
+        </originInfo>
+
+        <language>
+            <languageTerm type="text">
+                English
+            </languageTerm>
+        </language>
+
+        <classification>
+            Programming
+        </classification>
+
+        <identifier type="local">
+            8103
+        </identifier>
+
+        <abstract>
+            Buku pembelajaran Python yang membahas
+            dasar pemrograman dan pengembangan aplikasi.
+        </abstract>
+
+    </mods>
+
+
+    <!-- BUKU 8 -->
+    <mods ID="8104">
+
+        <titleInfo>
+            <title>
+                Information Technology Project Management
+            </title>
+        </titleInfo>
+
+        <name type="personal">
+            <namePart>
+                Kathy Schwalbe
+            </namePart>
+        </name>
+
+        <typeOfResource>
+            text
+        </typeOfResource>
+
+        <genre>
+            Book
+        </genre>
+
+        <originInfo>
+            <publisher>
+                Cengage Learning
+            </publisher>
+
+            <dateIssued>
+                2015
+            </dateIssued>
+        </originInfo>
+
+        <language>
+            <languageTerm type="text">
+                English
+            </languageTerm>
+        </language>
+
+        <classification>
+            Information Systems
+        </classification>
+
+        <identifier type="local">
+            8104
+        </identifier>
+
+        <abstract>
+            Buku mengenai pengelolaan proyek teknologi
+            informasi, perencanaan, risiko, dan kontrol proyek.
+        </abstract>
+
+    </mods>
+
+</modsCollection>
