@@ -154,7 +154,9 @@ function parseBook(
         kategori: category,
         identifier,
         abstrak: abstract,
-        cover: ""
+        cover: "",
+        stok: 5,
+        lokasi: "Rak A-01"
     };
 }
 

@@ -141,9 +141,6 @@ function AdminMessages() {
             {/* HEADER */}
             <div className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
                 <div>
-                    <span className="text-sm font-bold uppercase tracking-[0.2em] text-cyan-600 dark:text-cyan-400">
-                        Komunikasi
-                    </span>
 
                     <h1 className="mt-2 text-3xl font-black tracking-tight text-slate-900 dark:text-white">
                         Pesan Masuk

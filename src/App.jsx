@@ -8,6 +8,7 @@ import {
 import UserLayout from "./layouts/UserLayout";
 import AdminLayout from "./layouts/AdminLayout";
 
+import UserLogin from "./pages/user/UserLogin";
 import Home from "./pages/user/Home";
 import Gallery from "./pages/user/Gallery";
 import BookDetail from "./pages/user/BookDetail";
@@ -19,6 +20,7 @@ import AdminBooks from "./pages/admin/AdminBooks";
 import AdminAddBook from "./pages/admin/AdminAddBook";
 import AdminEditBook from "./pages/admin/AdminEditBook";
 import AdminMessages from "./pages/admin/AdminMessages";
+import AdminBorrowings from "./pages/admin/AdminBorrowings";
 
 import { useAuth } from "./context/AuthContext";
 
@@ -45,6 +47,12 @@ function App() {
                 <Route
                     element={<UserLayout />}
                 >
+
+                    <Route
+                        path="/login"
+                        element={<UserLogin />}
+                    />
+
                     <Route
                         path="/"
                         element={<Home />}
@@ -83,37 +91,32 @@ function App() {
                 >
                     <Route
                         index
-                        element={
-                            <AdminDashboard />
-                        }
+                        element={<AdminDashboard />}
                     />
 
                     <Route
                         path="buku"
-                        element={
-                            <AdminBooks />
-                        }
+                        element={<AdminBooks />}
                     />
 
                     <Route
                         path="buku/tambah"
-                        element={
-                            <AdminAddBook />
-                        }
+                        element={<AdminAddBook />}
                     />
 
                     <Route
                         path="buku/edit/:id"
-                        element={
-                            <AdminEditBook />
-                        }
+                        element={<AdminEditBook />}
                     />
 
                     <Route
                         path="pesan"
-                        element={
-                            <AdminMessages />
-                        }
+                        element={<AdminMessages />}
+                    />
+
+                    <Route
+                        path="peminjaman"
+                        element={<AdminBorrowings />}
                     />
                 </Route>
 

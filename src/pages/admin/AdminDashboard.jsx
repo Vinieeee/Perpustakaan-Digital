@@ -69,10 +69,6 @@ function AdminDashboard() {
             <div className="mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
 
                 <div>
-                    <p className="text-sm font-semibold text-cyan-600 dark:text-cyan-400">
-                        Overview
-                    </p>
-
                     <h1 className="mt-1 text-3xl font-black tracking-tight text-slate-900 dark:text-white">
                         Dashboard
                     </h1>

@@ -41,12 +41,19 @@ function AdminLayout() {
             icon: "📚"
         },
         {
+            label: "Peminjaman",
+            path: "/admin/peminjaman",
+            icon: "📖"
+        },
+        {
             label: "Pesan",
             path: "/admin/pesan",
             icon: "✉️",
             badge: unreadCount
         }
     ];
+
+
 
     const getNavClass = ({
         isActive
