@@ -46,12 +46,18 @@ function AdminLayout() {
             icon: "📖"
         },
         {
+            label: "Riwayat Peminjaman",
+            path: "/admin/riwayat-peminjaman",
+            icon: "🕘"
+        },
+        {
             label: "Pesan",
             path: "/admin/pesan",
             icon: "✉️",
             badge: unreadCount
         }
     ];
+
 
 
 

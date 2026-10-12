@@ -21,6 +21,7 @@ import AdminAddBook from "./pages/admin/AdminAddBook";
 import AdminEditBook from "./pages/admin/AdminEditBook";
 import AdminMessages from "./pages/admin/AdminMessages";
 import AdminBorrowings from "./pages/admin/AdminBorrowings";
+import AdminBorrowingHistory from "./pages/admin/AdminBorrowingHistory";
 
 import { useAuth } from "./context/AuthContext";
 
@@ -43,10 +44,9 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
+
                 {/* USER */}
-                <Route
-                    element={<UserLayout />}
-                >
+                <Route element={<UserLayout/>}>
 
                     <Route
                         path="/login"
@@ -72,6 +72,7 @@ function App() {
                         path="/contact"
                         element={<Contact />}
                     />
+
                 </Route>
 
                 {/* ADMIN LOGIN */}
@@ -89,6 +90,7 @@ function App() {
                         </ProtectedRoute>
                     }
                 >
+
                     <Route
                         index
                         element={<AdminDashboard />}
@@ -118,6 +120,12 @@ function App() {
                         path="peminjaman"
                         element={<AdminBorrowings />}
                     />
+
+                    <Route
+                        path="riwayat-peminjaman"
+                        element={<AdminBorrowingHistory />}
+                    />
+
                 </Route>
 
                 {/* FALLBACK */}
@@ -130,6 +138,7 @@ function App() {
                         />
                     }
                 />
+
             </Routes>
         </BrowserRouter>
     );
