@@ -13,6 +13,8 @@ import Home from "./pages/user/Home";
 import Gallery from "./pages/user/Gallery";
 import BookDetail from "./pages/user/BookDetail";
 import Contact from "./pages/user/Contact";
+import UserBorrowingHistory from "./pages/user/UserBorrowingHistory";
+
 
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -72,7 +74,10 @@ function App() {
                         path="/contact"
                         element={<Contact />}
                     />
-
+                    <Route
+                        path="/riwayat-peminjaman"
+                        element={<UserBorrowingHistory />}
+                    />
                 </Route>
 
                 {/* ADMIN LOGIN */}

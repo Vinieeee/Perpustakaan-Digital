@@ -1,389 +1,443 @@
-import {
-    useMemo,
-    useState
-} from "react";
-
+import { useMemo, useRef, useState } from "react";
+import useBooks from "../../hooks/useBooks";
 import useBorrowings from "../../hooks/useBorrowings";
 
+function formatDate(date) {
+    if (!date) return "-";
+
+    const parsedDate = new Date(date);
+
+    if (Number.isNaN(parsedDate.getTime())) {
+        return "-";
+    }
+
+    return parsedDate.toLocaleDateString("id-ID", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+    });
+}
+
+function getStatusStyle(status) {
+    switch (status) {
+        case "Menunggu Persetujuan":
+            return "bg-yellow-500/10 text-yellow-400";
+
+        case "Disetujui":
+            return "bg-blue-500/10 text-blue-400";
+
+        case "Dipinjam":
+            return "bg-purple-500/10 text-purple-400";
+
+        case "Dikembalikan":
+            return "bg-green-500/10 text-green-400";
+
+        case "Ditolak":
+            return "bg-red-500/10 text-red-400";
+
+        default:
+            return "bg-slate-500/10 text-slate-400";
+    }
+}
+
 function AdminBorrowingHistory() {
+    const { books, updateBook } = useBooks();
+
     const {
-        borrowings
+        borrowings,
+        updateBorrowing,
     } = useBorrowings();
 
-    const [search, setSearch] =
-        useState("");
+    const [search, setSearch] = useState("");
+    const [statusFilter, setStatusFilter] = useState("Semua");
+    const [processingIds, setProcessingIds] = useState([]);
 
-    const [filterStatus, setFilterStatus] =
-        useState("Semua");
-
-    const formatTanggal = (tanggal) => {
-        if (!tanggal) {
-            return "-";
-        }
-
-        const date = new Date(tanggal);
-
-        if (Number.isNaN(date.getTime())) {
-            return "-";
-        }
-
-        return date.toLocaleDateString(
-            "id-ID",
-            {
-                day: "2-digit",
-                month: "short",
-                year: "numeric"
-            }
-        );
-    };
+    // Mencegah klik ganda sebelum komponen selesai diperbarui.
+    const processingRef = useRef(new Set());
 
     const filteredBorrowings = useMemo(() => {
-        const keyword = search
-            .toLowerCase()
-            .trim();
-
         return [...borrowings]
             .filter((borrowing) => {
-                const cocokStatus =
-                    filterStatus === "Semua" ||
-                    borrowing.status === filterStatus;
+                const keyword = search.toLowerCase();
 
-                const cocokSearch =
-                    !keyword ||
-                    borrowing.namaPeminjam
-                        ?.toLowerCase()
+                const matchesSearch =
+                    (borrowing.namaPeminjam || "")
+                        .toLowerCase()
                         .includes(keyword) ||
-                    borrowing.emailPeminjam
-                        ?.toLowerCase()
+                    (borrowing.judul || "")
+                        .toLowerCase()
                         .includes(keyword) ||
-                    borrowing.judul
-                        ?.toLowerCase()
+                    (borrowing.emailPeminjam || "")
+                        .toLowerCase()
                         .includes(keyword);
 
-                return cocokStatus && cocokSearch;
+                const matchesStatus =
+                    statusFilter === "Semua" ||
+                    borrowing.status === statusFilter;
+
+                return matchesSearch && matchesStatus;
             })
             .sort(
                 (a, b) =>
                     new Date(b.tanggalPengajuan || 0) -
                     new Date(a.tanggalPengajuan || 0)
             );
-    }, [
-        borrowings,
-        search,
-        filterStatus
-    ]);
+    }, [borrowings, search, statusFilter]);
 
-    const getStatusClass = (status) => {
-        if (status === "Menunggu Persetujuan") {
-            return "bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400";
+    const totalBorrowings = borrowings.length;
+
+    const totalBorrowed = borrowings.filter(
+        (borrowing) => borrowing.status === "Dipinjam"
+    ).length;
+
+    const totalReturned = borrowings.filter(
+        (borrowing) => borrowing.status === "Dikembalikan"
+    ).length;
+
+    const totalPending = borrowings.filter(
+        (borrowing) =>
+            borrowing.status === "Menunggu Persetujuan"
+    ).length;
+
+    const handleReturn = (borrowing) => {
+        const borrowingId = String(borrowing.id);
+
+        // Hanya peminjaman berstatus Dipinjam yang dapat dikembalikan.
+        if (borrowing.status !== "Dipinjam") {
+            return;
         }
 
-        if (
-            status === "Dipinjam" ||
-            status === "Disetujui"
-        ) {
-            return "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400";
+        if (processingRef.current.has(borrowingId)) {
+            return;
         }
 
-        if (status === "Ditolak") {
-            return "bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-400";
-        }
+        processingRef.current.add(borrowingId);
 
-        if (status === "Dikembalikan") {
-            return "bg-cyan-50 text-cyan-700 dark:bg-cyan-950/40 dark:text-cyan-400";
-        }
+        setProcessingIds((current) => [
+            ...current,
+            borrowingId,
+        ]);
 
-        return "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300";
+        try {
+            const book = books.find(
+                (item) =>
+                    String(item.id) ===
+                    String(borrowing.bookId)
+            );
+
+            if (!book) {
+                window.alert(
+                    "Data buku tidak ditemukan. Pengembalian dibatalkan."
+                );
+                return;
+            }
+
+            const confirmed = window.confirm(
+                `Konfirmasi pengembalian buku "${borrowing.judul}" dari ${borrowing.namaPeminjam}?\n\nStok buku akan bertambah 1.`
+            );
+
+            if (!confirmed) {
+                return;
+            }
+
+            const currentStock = Number(book.stok);
+
+            if (
+                !Number.isFinite(currentStock) ||
+                currentStock < 0
+            ) {
+                window.alert(
+                    "Stok buku tidak valid. Periksa data buku terlebih dahulu."
+                );
+                return;
+            }
+
+            // Tambahkan satu stok buku.
+            updateBook(book.id, {
+                stok: currentStock + 1,
+            });
+
+            // Catat tanggal dan ubah status peminjaman.
+            updateBorrowing(borrowing.id, {
+                status: "Dikembalikan",
+                tanggalKembali: new Date().toISOString(),
+            });
+
+            window.alert(
+                "Pengembalian berhasil dikonfirmasi. Stok buku telah diperbarui."
+            );
+        } finally {
+            processingRef.current.delete(borrowingId);
+
+            setProcessingIds((current) =>
+                current.filter((id) => id !== borrowingId)
+            );
+        }
     };
 
-    const totalDipinjam = borrowings.filter(
-        (item) =>
-            item.status === "Dipinjam" ||
-            item.status === "Disetujui"
-    ).length;
-
-    const totalDikembalikan = borrowings.filter(
-        (item) =>
-            item.status === "Dikembalikan"
-    ).length;
-
-    const totalDitolak = borrowings.filter(
-        (item) =>
-            item.status === "Ditolak"
-    ).length;
-
     return (
-        <div className="space-y-5 px-5 py-8 sm:px-8">
-
-            {/* Header */}
+        <div className="space-y-6 px-5 py-8 sm:px-8">
+            {/* HEADER */}
             <div>
-                <h1 className="mt-1 text-3xl font-black tracking-tight text-slate-900 dark:text-white">
+                <p className="text-sm text-cyan-400">
+                    ADMIN PANEL
+                </p>
+
+                <h1 className="mt-1 text-2xl font-bold text-white sm:text-3xl">
                     Riwayat Peminjaman
                 </h1>
 
-                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                    Lihat seluruh riwayat pengajuan dan transaksi peminjaman buku.
+                <p className="mt-2 text-sm text-slate-400">
+                    Pantau seluruh transaksi peminjaman dan
+                    pengembalian buku perpustakaan.
                 </p>
             </div>
 
-            {/* Summary */}
-            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-
-                <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-                    <p className="text-sm text-slate-500 dark:text-slate-400">
+            {/* SUMMARY */}
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                <div className="rounded-2xl border border-slate-700 bg-slate-900 p-5">
+                    <p className="text-sm text-slate-400">
                         Total Transaksi
                     </p>
 
-                    <p className="mt-1 text-3xl font-black text-slate-900 dark:text-white">
-                        {borrowings.length}
+                    <p className="mt-2 text-3xl font-bold text-white">
+                        {totalBorrowings}
                     </p>
                 </div>
 
-                <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 shadow-sm dark:border-emerald-900/50 dark:bg-emerald-950/20">
-                    <p className="text-sm text-emerald-700 dark:text-emerald-400">
+                <div className="rounded-2xl border border-slate-700 bg-slate-900 p-5">
+                    <p className="text-sm text-slate-400">
                         Sedang Dipinjam
                     </p>
 
-                    <p className="mt-1 text-3xl font-black text-emerald-700 dark:text-emerald-400">
-                        {totalDipinjam}
+                    <p className="mt-2 text-3xl font-bold text-purple-400">
+                        {totalBorrowed}
                     </p>
                 </div>
 
-                <div className="rounded-2xl border border-cyan-200 bg-cyan-50 p-4 shadow-sm dark:border-cyan-900/50 dark:bg-cyan-950/20">
-                    <p className="text-sm text-cyan-700 dark:text-cyan-400">
+                <div className="rounded-2xl border border-slate-700 bg-slate-900 p-5">
+                    <p className="text-sm text-slate-400">
+                        Sudah Dikembalikan
+                    </p>
+
+                    <p className="mt-2 text-3xl font-bold text-green-400">
+                        {totalReturned}
+                    </p>
+                </div>
+
+                <div className="rounded-2xl border border-slate-700 bg-slate-900 p-5">
+                    <p className="text-sm text-slate-400">
+                        Menunggu Persetujuan
+                    </p>
+
+                    <p className="mt-2 text-3xl font-bold text-yellow-400">
+                        {totalPending}
+                    </p>
+                </div>
+            </div>
+
+            {/* FILTER */}
+            <div className="flex flex-col gap-3 sm:flex-row">
+                <input
+                    type="text"
+                    value={search}
+                    onChange={(event) =>
+                        setSearch(event.target.value)
+                    }
+                    placeholder="Cari nama, email, atau judul buku..."
+                    className="w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-cyan-500 sm:flex-1"
+                />
+
+                <select
+                    value={statusFilter}
+                    onChange={(event) =>
+                        setStatusFilter(event.target.value)
+                    }
+                    className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-white outline-none focus:border-cyan-500"
+                >
+                    <option value="Semua">
+                        Semua Status
+                    </option>
+
+                    <option value="Menunggu Persetujuan">
+                        Menunggu Persetujuan
+                    </option>
+
+                    <option value="Disetujui">
+                        Disetujui
+                    </option>
+
+                    <option value="Dipinjam">
+                        Dipinjam
+                    </option>
+
+                    <option value="Dikembalikan">
                         Dikembalikan
-                    </p>
+                    </option>
 
-                    <p className="mt-1 text-3xl font-black text-cyan-700 dark:text-cyan-400">
-                        {totalDikembalikan}
-                    </p>
-                </div>
-
-                <div className="rounded-2xl border border-red-200 bg-red-50 p-4 shadow-sm dark:border-red-900/50 dark:bg-red-950/20">
-                    <p className="text-sm text-red-700 dark:text-red-400">
+                    <option value="Ditolak">
                         Ditolak
-                    </p>
-
-                    <p className="mt-1 text-3xl font-black text-red-700 dark:text-red-400">
-                        {totalDitolak}
-                    </p>
-                </div>
-
+                    </option>
+                </select>
             </div>
 
-            {/* Search and Filter */}
-            <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            {/* TABLE */}
+            <div className="overflow-hidden rounded-2xl border border-slate-700 bg-slate-900">
+                <div className="overflow-x-auto">
+                    <table className="w-full min-w-[1100px] text-left text-sm">
+                        <thead className="border-b border-slate-700 bg-slate-800/70 text-slate-300">
+                            <tr>
+                                <th className="px-5 py-4 font-semibold">
+                                    Peminjam
+                                </th>
 
-                <div className="grid gap-3 md:grid-cols-[1fr_240px]">
+                                <th className="px-5 py-4 font-semibold">
+                                    Buku
+                                </th>
 
-                    <div>
-                        <label
-                            htmlFor="searchHistory"
-                            className="mb-1.5 block text-sm font-semibold text-slate-700 dark:text-slate-300"
-                        >
-                            Cari Riwayat
-                        </label>
+                                <th className="px-5 py-4 font-semibold">
+                                    Tanggal Pengajuan
+                                </th>
 
-                        <input
-                            id="searchHistory"
-                            type="text"
-                            value={search}
-                            onChange={(event) =>
-                                setSearch(event.target.value)
-                            }
-                            placeholder="Cari nama, email, atau judul buku..."
-                            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
-                        />
-                    </div>
+                                <th className="px-5 py-4 font-semibold">
+                                    Tanggal Pinjam
+                                </th>
 
-                    <div>
-                        <label
-                            htmlFor="historyStatus"
-                            className="mb-1.5 block text-sm font-semibold text-slate-700 dark:text-slate-300"
-                        >
-                            Filter Status
-                        </label>
+                                <th className="px-5 py-4 font-semibold">
+                                    Jatuh Tempo
+                                </th>
 
-                        <select
-                            id="historyStatus"
-                            value={filterStatus}
-                            onChange={(event) =>
-                                setFilterStatus(event.target.value)
-                            }
-                            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
-                        >
-                            <option value="Semua">
-                                Semua Status
-                            </option>
+                                <th className="px-5 py-4 font-semibold">
+                                    Tanggal Kembali
+                                </th>
 
-                            <option value="Menunggu Persetujuan">
-                                Menunggu Persetujuan
-                            </option>
+                                <th className="px-5 py-4 font-semibold">
+                                    Status
+                                </th>
 
-                            <option value="Dipinjam">
-                                Dipinjam
-                            </option>
+                                <th className="px-5 py-4 font-semibold">
+                                    Aksi
+                                </th>
+                            </tr>
+                        </thead>
 
-                            <option value="Disetujui">
-                                Disetujui
-                            </option>
+                        <tbody className="divide-y divide-slate-800">
+                            {filteredBorrowings.map((borrowing) => {
+                                const isProcessing =
+                                    processingIds.includes(
+                                        String(borrowing.id)
+                                    );
 
-                            <option value="Ditolak">
-                                Ditolak
-                            </option>
+                                return (
+                                    <tr
+                                        key={borrowing.id}
+                                        className="text-slate-300 transition hover:bg-slate-800/40"
+                                    >
+                                        <td className="px-5 py-4">
+                                            <p className="font-medium text-white">
+                                                {borrowing.namaPeminjam || "-"}
+                                            </p>
 
-                            <option value="Dikembalikan">
-                                Dikembalikan
-                            </option>
-                        </select>
-                    </div>
+                                            <p className="mt-1 text-xs text-slate-500">
+                                                {borrowing.emailPeminjam || "-"}
+                                            </p>
+                                        </td>
 
-                </div>
+                                        <td className="px-5 py-4">
+                                            <span className="font-medium text-white">
+                                                {borrowing.judul || "-"}
+                                            </span>
+                                        </td>
 
-            </div>
+                                        <td className="whitespace-nowrap px-5 py-4">
+                                            {formatDate(
+                                                borrowing.tanggalPengajuan
+                                            )}
+                                        </td>
 
-            {/* History Table */}
-            <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                                        <td className="whitespace-nowrap px-5 py-4">
+                                            {formatDate(
+                                                borrowing.tanggalPinjam
+                                            )}
+                                        </td>
 
-                {filteredBorrowings.length === 0 ? (
+                                        <td className="whitespace-nowrap px-5 py-4">
+                                            {formatDate(
+                                                borrowing.tanggalJatuhTempo
+                                            )}
+                                        </td>
 
-                    <div className="flex min-h-[280px] flex-col items-center justify-center px-6 text-center">
+                                        <td className="whitespace-nowrap px-5 py-4">
+                                            {formatDate(
+                                                borrowing.tanggalKembali
+                                            )}
+                                        </td>
 
-                        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100 text-3xl dark:bg-slate-800">
-                            📚
-                        </div>
+                                        <td className="px-5 py-4">
+                                            <span
+                                                className={`inline-flex whitespace-nowrap rounded-full px-3 py-1 text-xs font-medium ${getStatusStyle(
+                                                    borrowing.status
+                                                )}`}
+                                            >
+                                                {borrowing.status || "-"}
+                                            </span>
+                                        </td>
 
-                        <h3 className="mt-4 text-lg font-bold text-slate-900 dark:text-white">
-                            Riwayat Belum Tersedia
-                        </h3>
-
-                        <p className="mt-1.5 max-w-md text-sm leading-6 text-slate-500 dark:text-slate-400">
-                            Belum ada transaksi yang sesuai dengan pencarian atau filter.
-                        </p>
-
-                    </div>
-
-                ) : (
-
-                    <div className="overflow-x-auto">
-
-                        <table className="w-full min-w-[1150px] text-left">
-
-                            <thead className="border-b border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-800/70">
-
-                                <tr>
-                                    <th className="px-5 py-3.5 text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                                        Peminjam
-                                    </th>
-
-                                    <th className="px-5 py-3.5 text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                                        Buku
-                                    </th>
-
-                                    <th className="px-5 py-3.5 text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                                        Tanggal Pengajuan
-                                    </th>
-
-                                    <th className="px-5 py-3.5 text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                                        Tanggal Pinjam
-                                    </th>
-
-                                    <th className="px-5 py-3.5 text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                                        Jatuh Tempo
-                                    </th>
-
-                                    <th className="px-5 py-3.5 text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                                        Tanggal Kembali
-                                    </th>
-
-                                    <th className="px-5 py-3.5 text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                                        Status
-                                    </th>
-                                </tr>
-
-                            </thead>
-
-                            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
-
-                                {filteredBorrowings.map(
-                                    (borrowing) => (
-                                        <tr
-                                            key={borrowing.id}
-                                            className="transition hover:bg-slate-50 dark:hover:bg-slate-800/40"
-                                        >
-
-                                            <td className="px-5 py-4">
-                                                <p className="font-bold text-slate-900 dark:text-white">
-                                                    {borrowing.namaPeminjam || "-"}
-                                                </p>
-
-                                                <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400">
-                                                    {borrowing.emailPeminjam || "-"}
-                                                </p>
-                                            </td>
-
-                                            <td className="px-5 py-4">
-                                                <p className="max-w-[240px] font-semibold text-slate-900 dark:text-white">
-                                                    {borrowing.judul || "-"}
-                                                </p>
-
-                                                <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
-                                                    ID Buku: {borrowing.bookId ?? "-"}
-                                                </p>
-                                            </td>
-
-                                            <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600 dark:text-slate-400">
-                                                {formatTanggal(
-                                                    borrowing.tanggalPengajuan
-                                                )}
-                                            </td>
-
-                                            <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600 dark:text-slate-400">
-                                                {formatTanggal(
-                                                    borrowing.tanggalPinjam
-                                                )}
-                                            </td>
-
-                                            <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600 dark:text-slate-400">
-                                                {formatTanggal(
-                                                    borrowing.tanggalJatuhTempo
-                                                )}
-                                            </td>
-
-                                            <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600 dark:text-slate-400">
-                                                {formatTanggal(
-                                                    borrowing.tanggalKembali
-                                                )}
-                                            </td>
-
-                                            <td className="whitespace-nowrap px-5 py-4">
-                                                <span
-                                                    className={`inline-flex rounded-full px-3 py-1 text-xs font-bold ${getStatusClass(
-                                                        borrowing.status
-                                                    )}`}
+                                        <td className="px-5 py-4">
+                                            {borrowing.status === "Dipinjam" ? (
+                                                <button
+                                                    type="button"
+                                                    disabled={isProcessing}
+                                                    onClick={() =>
+                                                        handleReturn(borrowing)
+                                                    }
+                                                    className="whitespace-nowrap rounded-lg bg-green-500 px-3 py-2 text-xs font-semibold text-white transition hover:bg-green-600 disabled:cursor-not-allowed disabled:opacity-50"
                                                 >
-                                                    {borrowing.status || "Tidak diketahui"}
+                                                    {isProcessing
+                                                        ? "Memproses..."
+                                                        : "Kembalikan Buku"}
+                                                </button>
+                                            ) : borrowing.status === "Dikembalikan" ? (
+                                                <span className="text-xs text-green-400">
+                                                    Selesai
                                                 </span>
-                                            </td>
+                                            ) : (
+                                                <span className="text-xs text-slate-500">
+                                                    -
+                                                </span>
+                                            )}
+                                        </td>
+                                    </tr>
+                                );
+                            })}
 
-                                        </tr>
-                                    )
-                                )}
+                            {filteredBorrowings.length === 0 && (
+                                <tr>
+                                    <td
+                                        colSpan={8}
+                                        className="px-5 py-12 text-center"
+                                    >
+                                        <p className="font-medium text-slate-300">
+                                            Tidak ada data peminjaman.
+                                        </p>
 
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
-                )}
-
-                <div className="border-t border-slate-200 px-5 py-3 text-xs text-slate-500 dark:border-slate-800 dark:text-slate-400">
-                    Menampilkan {filteredBorrowings.length} dari {borrowings.length} transaksi.
+                                        <p className="mt-1 text-xs text-slate-500">
+                                            Coba ubah kata kunci pencarian
+                                            atau filter status.
+                                        </p>
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
                 </div>
-
             </div>
 
+            <p className="text-xs leading-relaxed text-slate-500">
+                Catatan: data peminjaman dan stok disimpan melalui
+                localStorage browser ini. Untuk penggunaan multi-admin
+                atau multi-perangkat, diperlukan backend dan database.
+            </p>
         </div>
     );
 }
