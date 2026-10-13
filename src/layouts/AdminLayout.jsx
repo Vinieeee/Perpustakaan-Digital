@@ -194,7 +194,7 @@ function AdminLayout() {
                         )
                     )}
 
-                    <div className="my-5 border-t border-slate-800" />
+                    {/* <div className="my-5 border-t border-slate-800" />
 
                     <p className="mb-3 px-4 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-600">
                         Website
@@ -209,7 +209,7 @@ function AdminLayout() {
                         </span>
 
                         Lihat Website
-                    </NavLink>
+                    </NavLink> */}
 
                 </nav>
 
