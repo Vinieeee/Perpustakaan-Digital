@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <modsCollection
     xmlns="http://www.loc.gov/mods/v3"
     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -11,487 +10,649 @@
     ">
 
     <!-- BUKU 1 -->
-    <mods ID="8097">
-
-        <titleInfo>
-            <title>
-                Advertising and promotion an integrated marketing communications perspective
-            </title>
-        </titleInfo>
-
-        <name type="personal">
-            <namePart>
-                George E. Belch
-            </namePart>
-        </name>
-
-        <name type="personal">
-            <namePart>
-                Michael A. Belch
-            </namePart>
-        </name>
-
-        <typeOfResource>
-            text
-        </typeOfResource>
-
-        <genre>
-            Book
-        </genre>
-
+    <mods ID="8105">
+        <titleInfo><title>Fangirl</title></titleInfo>
+        <name type="personal"><namePart>Rainbow Rowell</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
         <originInfo>
-            <publisher>
-                McGraw-Hill
-            </publisher>
-
-            <dateIssued>
-                2013
-            </dateIssued>
+            <publisher>Martins Griffin : New York.</publisher>
+            <dateIssued>2013</dateIssued>
         </originInfo>
-
-        <language>
-            <languageTerm type="text">
-                English
-            </languageTerm>
-        </language>
-
-        <classification>
-            Marketing
-        </classification>
-
-        <identifier type="local">
-            8097
-        </identifier>
-
-        <abstract>
-            Buku mengenai advertising dan promotion
-            serta integrated marketing communications.
-        </abstract>
-
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Fiction</classification>
+        <identifier type="local">8105</identifier>
+        <location><url access="preview">/images/book-Fangirl.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Novel Fangirl ini menceritakan tentang dua saudara kembar Cath dan Gelatik yang merupakan penggemar Simon Snow. Cath adalah saudara kembar identik dan pemalu dari saudara perempuannya.</abstract>
     </mods>
-
 
     <!-- BUKU 2 -->
-    <mods ID="8098">
-
-        <titleInfo>
-            <title>
-                Marketing Management
-            </title>
-        </titleInfo>
-
-        <name type="personal">
-            <namePart>
-                Philip Kotler
-            </namePart>
-        </name>
-
-        <name type="personal">
-            <namePart>
-                Kevin Lane Keller
-            </namePart>
-        </name>
-
-        <typeOfResource>
-            text
-        </typeOfResource>
-
-        <genre>
-            Book
-        </genre>
-
+    <mods ID="8106">
+        <titleInfo><title>Remember When : Ketika Aku dan Kau Jatuh Cinta</title></titleInfo>
+        <name type="personal"><namePart>Winna Efendi</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
         <originInfo>
-            <publisher>
-                Pearson
-            </publisher>
-
-            <dateIssued>
-                2016
-            </dateIssued>
+            <publisher>Gagas Media : JAKARTA.</publisher>
+            <dateIssued>2011</dateIssued>
         </originInfo>
-
-        <language>
-            <languageTerm type="text">
-                English
-            </languageTerm>
-        </language>
-
-        <classification>
-            Marketing
-        </classification>
-
-        <identifier type="local">
-            8098
-        </identifier>
-
-        <abstract>
-            Buku yang membahas konsep dan strategi
-            manajemen pemasaran secara komprehensif.
-        </abstract>
-
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Fiction</classification>
+        <identifier type="local">8106</identifier>
+        <location><url access="preview">/images/book-Remember When.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Kisah cinta dari masa SMA selalu menjadi tema yang tidak pernah basi untuk diangkat ke dalam sebuah novel.</abstract>
     </mods>
-
 
     <!-- BUKU 3 -->
-    <mods ID="8099">
-
-        <titleInfo>
-            <title>
-                Management Information Systems
-            </title>
-        </titleInfo>
-
-        <name type="personal">
-            <namePart>
-                Kenneth C. Laudon
-            </namePart>
-        </name>
-
-        <name type="personal">
-            <namePart>
-                Jane P. Laudon
-            </namePart>
-        </name>
-
-        <typeOfResource>
-            text
-        </typeOfResource>
-
-        <genre>
-            Book
-        </genre>
-
+    <mods ID="8107">
+        <titleInfo><title>Bumi Cinta Cetakan 1</title></titleInfo>
+        <name type="personal"><namePart>Habiburrahman El Shirazy</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
         <originInfo>
-            <publisher>
-                Pearson
-            </publisher>
-
-            <dateIssued>
-                2018
-            </dateIssued>
+            <publisher>Ihwah : JAKARTA.</publisher>
+            <dateIssued>2011</dateIssued>
         </originInfo>
-
-        <language>
-            <languageTerm type="text">
-                English
-            </languageTerm>
-        </language>
-
-        <classification>
-            Information Systems
-        </classification>
-
-        <identifier type="local">
-            8099
-        </identifier>
-
-        <abstract>
-            Buku mengenai sistem informasi manajemen
-            dan penerapannya dalam organisasi bisnis.
-        </abstract>
-
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Fiction</classification>
+        <identifier type="local">8107</identifier>
+        <location><url access="preview">/images/book-Bumu Cinta Cetakan 1.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Apajadinya, jika seorang santri salaf, bernama Muhammad Ayyas, hidup di negeri paling menjunjung tinggi seks bebas dan pornografi, yaitu Rusia?</abstract>
     </mods>
-
 
     <!-- BUKU 4 -->
-    <mods ID="8100">
-
-        <titleInfo>
-            <title>
-                Database System Concepts
-            </title>
-        </titleInfo>
-
-        <name type="personal">
-            <namePart>
-                Abraham Silberschatz
-            </namePart>
-        </name>
-
-        <name type="personal">
-            <namePart>
-                Henry F. Korth
-            </namePart>
-        </name>
-
-        <name type="personal">
-            <namePart>
-                S. Sudarshan
-            </namePart>
-        </name>
-
-        <typeOfResource>
-            text
-        </typeOfResource>
-
-        <genre>
-            Book
-        </genre>
-
+    <mods ID="8108">
+        <titleInfo><title>Chicken Soup for The Soul: Graphic Novel Perjalanan Ajaib dan Kisah-kisah nyata menyentuh lainnya</title></titleInfo>
+        <name type="personal"><namePart>Kim Donghwa</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
         <originInfo>
-            <publisher>
-                McGraw-Hill
-            </publisher>
-
-            <dateIssued>
-                2019
-            </dateIssued>
+            <publisher>Gramedia Pustaka Utama : JAKARTA.</publisher>
+            <dateIssued>2009</dateIssued>
         </originInfo>
-
-        <language>
-            <languageTerm type="text">
-                English
-            </languageTerm>
-        </language>
-
-        <classification>
-            Database
-        </classification>
-
-        <identifier type="local">
-            8100
-        </identifier>
-
-        <abstract>
-            Buku yang membahas konsep database,
-            desain database, transaksi, dan sistem
-            manajemen basis data.
-        </abstract>
-
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Fiction</classification>
+        <identifier type="local">8108</identifier>
+        <location><url access="preview">/images/book-Chicken Soup for The Soul.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Chicken Soup for the Soul graphic novel buku ketiga hadir di tengah penggemarnya. Seri bestseller dunia tentang kisah nyata luarbiasa.</abstract>
     </mods>
-
 
     <!-- BUKU 5 -->
-    <mods ID="8101">
-
-        <titleInfo>
-            <title>
-                Computer Networking
-            </title>
-        </titleInfo>
-
-        <name type="personal">
-            <namePart>
-                Andrew S. Tanenbaum
-            </namePart>
-        </name>
-
-        <name type="personal">
-            <namePart>
-                David J. Wetherall
-            </namePart>
-        </name>
-
-        <typeOfResource>
-            text
-        </typeOfResource>
-
-        <genre>
-            Book
-        </genre>
-
+    <mods ID="8109">
+        <titleInfo><title>Eleanor &amp; Park</title></titleInfo>
+        <name type="personal"><namePart>Rainbow Rowell</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
         <originInfo>
-            <publisher>
-                Pearson
-            </publisher>
-
-            <dateIssued>
-                2017
-            </dateIssued>
+            <publisher>St. Martin Press : Amerika.</publisher>
+            <dateIssued>2013</dateIssued>
         </originInfo>
-
-        <language>
-            <languageTerm type="text">
-                English
-            </languageTerm>
-        </language>
-
-        <classification>
-            Computer Networks
-        </classification>
-
-        <identifier type="local">
-            8101
-        </identifier>
-
-        <abstract>
-            Buku mengenai konsep jaringan komputer,
-            protokol jaringan, arsitektur jaringan,
-            dan komunikasi data.
-        </abstract>
-
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Fiction</classification>
+        <identifier type="local">8109</identifier>
+        <location><url access="preview">/images/book-Eleanor &amp; Park.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Buku ini menggunakan sudut pandang orang ketiga, dan narasinya bergantian antara perspektif Eleanor dan perspektif Park.</abstract>
     </mods>
-
 
     <!-- BUKU 6 -->
-    <mods ID="8102">
-
-        <titleInfo>
-            <title>
-                Object-Oriented Analysis and Design
-            </title>
-        </titleInfo>
-
-        <name type="personal">
-            <namePart>
-                Grady Booch
-            </namePart>
-        </name>
-
-        <name type="personal">
-            <namePart>
-                Robert A. Maksimchuk
-            </namePart>
-        </name>
-
-        <typeOfResource>
-            text
-        </typeOfResource>
-
-        <genre>
-            Book
-        </genre>
-
+    <mods ID="8110">
+        <titleInfo><title>Breaking Dawn : Awal Yang Baru</title></titleInfo>
+        <name type="personal"><namePart>Stephenie Meyerl</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
         <originInfo>
-            <publisher>
-                Addison-Wesley
-            </publisher>
-
-            <dateIssued>
-                2007
-            </dateIssued>
+            <publisher>Gramedia Pustaka Utama : JAKARTA.</publisher>
+            <dateIssued>2009</dateIssued>
         </originInfo>
-
-        <language>
-            <languageTerm type="text">
-                English
-            </languageTerm>
-        </language>
-
-        <classification>
-            Programming
-        </classification>
-
-        <identifier type="local">
-            8102
-        </identifier>
-
-        <abstract>
-            Buku mengenai analisis dan perancangan
-            berorientasi objek dalam pengembangan
-            perangkat lunak.
-        </abstract>
-
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Fiction</classification>
+        <identifier type="local">8110</identifier>
+        <location><url access="preview">/images/book-Breaking Dawn.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Bila kau mencintai orang yang membunuhmu, kau tak punya pilihan. Bila nyawamu satu-satunya yang harus kauberikan untuk orang yang kaucintai, bagaimana mungkin kau tidak memberikannya? Bagi Bella Swan, mencintai dan dicintai vampir bernama Edward adalah bagaikan khayalan dan mimpi buruk yang dirajut jadi satu ke dalam kenyataan. Bukan itu saja, hubungannya yang sangat istimewa dengan Jacob Black sang werewolf, ternyata menyeret Bella ke pilihan-pilihan pelik yang membuat hati keduanya tercabik-cabik. Tapi konon cinta harus memilih, dan karenanya Bella harus memutuskan. Dan sebagai orang yang sangat mengenal Bella, Jacob tahu persis apa keputusan gadis itu. Lalu sanggupkah Jacob meninggalkan Bella selamanya untuk menyembuhkan luka-luka hatinya sendiri? Dan ketika Bella mencarinya, sanggupkah Jacob mengatakan tidak?</abstract>
     </mods>
-
 
     <!-- BUKU 7 -->
-    <mods ID="8103">
-
-        <titleInfo>
-            <title>
-                Python Crash Course
-            </title>
-        </titleInfo>
-
-        <name type="personal">
-            <namePart>
-                Eric Matthes
-            </namePart>
-        </name>
-
-        <typeOfResource>
-            text
-        </typeOfResource>
-
-        <genre>
-            Book
-        </genre>
-
+    <mods ID="8111">
+        <titleInfo><title>The Cold Six Thousand</title></titleInfo>
+        <name type="personal"><namePart>James Ellory</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
         <originInfo>
-            <publisher>
-                No Starch Press
-            </publisher>
-
-            <dateIssued>
-                2019
-            </dateIssued>
+            <publisher>Century : Australia.</publisher>
+            <dateIssued>2001</dateIssued>
         </originInfo>
-
-        <language>
-            <languageTerm type="text">
-                English
-            </languageTerm>
-        </language>
-
-        <classification>
-            Programming
-        </classification>
-
-        <identifier type="local">
-            8103
-        </identifier>
-
-        <abstract>
-            Buku pembelajaran Python yang membahas
-            dasar pemrograman dan pengembangan aplikasi.
-        </abstract>
-
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Fiction</classification>
+        <identifier type="local">8111</identifier>
+        <location><url access="preview">/images/book-The Cold Six Thousand.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Wayne Tedrow Jr datang untuk membunuh seorang pria. Bayarannya $6.000. Dia malah mendapati dirinya berada di tengah-tengah upaya menutup-nutupi pembunuhan JFK. Di sana, dia mengikuti perjalanan lima tahun yang mengerikan melalui sisi gelap kebijakan publik melalui Las Vegas, Howard Hughes, Vietnam, perdagangan narkoba CIA, Kuba, bisnis hiburan yang menjijikkan, rasisme, dan Klan.Ini adalah tahun 1960-an di bawah lensa tajam Ellroy, ikon-ikon era itu berbaur dengan polisi, pembunuh, penjahat, dan provokator. The Cold Six Thousand adalah pertemuan historis sebagai mimpi buruk Amerika. Fiksi yang dahsyat dan epik. Sebuah mahakarya.</abstract>
     </mods>
 
-
     <!-- BUKU 8 -->
-    <mods ID="8104">
-
-        <titleInfo>
-            <title>
-                Information Technology Project Management
-            </title>
-        </titleInfo>
-
-        <name type="personal">
-            <namePart>
-                Kathy Schwalbe
-            </namePart>
-        </name>
-
-        <typeOfResource>
-            text
-        </typeOfResource>
-
-        <genre>
-            Book
-        </genre>
-
+    <mods ID="8112">
+        <titleInfo><title>Matt &amp; Mou</title></titleInfo>
+        <name type="personal"><namePart>Wulanfadi</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
         <originInfo>
-            <publisher>
-                Cengage Learning
-            </publisher>
-
-            <dateIssued>
-                2015
-            </dateIssued>
+            <publisher>Gagas Media : Jakarta</publisher>
+            <dateIssued>2016</dateIssued>
         </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Fiction</classification>
+        <identifier type="local">8112</identifier>
+        <location><url access="preview">/images/book-Matt &amp; Mou.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Buku ini menceritakan tentang Matt, Cowok antisosial yang bisa kau temui di pojok kelas, atau di kantin dengan buku bacaan tebalnya. Benar-benar tertutup. Apalagi soal perasaan. Kematian ayahnya semakin membuat Matt enggan membuka diri. Lain lagi dengan Mou. Cewek hiperaktif yang bisa kau temui di keramaian kantin, atau di lapangan sekolah sebagai pemandu sorak. Benar-benar terbuka. Apalagi soal perasaan. Perceraian orangtuanya membuat Mou terpaksa menutupi kesedihan dengan tawa. Keduanya bersahabat karena kegigihan Mou. Matt and Mou adalah sepasang sehabat yang saling memendam rasa. Namun karena persahabatan itulah, mereka berpikir bahwwa mereka hanyalah sepasang sahabat, tidak akan pernah lebih dai itu.Seperti ketika api dan es yang bersama, api tidak memancarkan kobarannya, hanya sebatas rasa hangat yang menenangkan. Sementara itu, es perlahan mencair seiring bersama sang api. Seperti itulah persahabatan Matt dan Mou sesungguhnya. Di sini diceritakan kehidupan mereka..</abstract>
+    </mods>
 
-        <language>
-            <languageTerm type="text">
-                English
-            </languageTerm>
-        </language>
+    <!-- BUKU 9 -->
+    <mods ID="8113">
+        <titleInfo><title>Sunset dan Rosie</title></titleInfo>
+        <name type="personal"><namePart>Tere Liye</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>Mahaka : Jakarta</publisher>
+            <dateIssued>2018</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Fiction</classification>
+        <identifier type="local">8113</identifier>
+        <location><url access="preview">/images/book-Sunset dan Rosie.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Buku ini membahas tentang: 1. Mawar biru untuk rosie 2. Bom Jimbaran 3. Nathan Pergi 4. Pertunangan yang batal 5. Formasi Ribuan Obor 6. Pemakaman pasir 7. Demi anak- anak 8. Bertahanlah, Ros! 9. Kau terlalu mencintainya 10.Dua tahun yang berlalu cepat, dll.</abstract>
+    </mods>
 
-        <classification>
-            Information Systems
-        </classification>
+    <!-- BUKU 10 -->
+    <mods ID="8114">
+        <titleInfo><title>Kana di Negeri Kiwi</title></titleInfo>
+        <name type="personal"><namePart>Rosemary Kesauly</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>Gramedia Pustaka Utama : Jakarta</publisher>
+            <dateIssued>2005</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Fiction</classification>
+        <identifier type="local">8114</identifier>
+        <location><url access="preview">/images/book-Kana di Negeri Kiwi.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Mengisahkan perjalanan hidup seorang remaja bernama Kana. Kana harus pindah dari Yogyakarta ke Selandia Baru, yang dikenal sebagai Negeri Kiwi, setelah orang tuanya bercerai. Novel ini mengeksplorasi tema penyesuaian diri, persahabatan, dan pertumbuhan pribadi, serta bagaimana Kana menghadapi berbagai tantangan dalam hidup barunya di Negeri Kiwi.</abstract>
+    </mods>
 
-        <identifier type="local">
-            8104
-        </identifier>
+    <!-- BUKU 11 -->
+    <mods ID="8115">
+        <titleInfo><title>Entrepreneurship : Theory, Process, Practice</title></titleInfo>
+        <name type="personal"><namePart>Kuratko</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>Cengage Learning : SINGAPORE.</publisher>
+            <dateIssued>2020</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Kps</classification>
+        <identifier type="local">8115</identifier>
+        <location><url access="preview">/images/book-Entrepreneurship.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Buku ini membahas tentang: 1. Pola pikir kewirausahaan pada abad kedua puluh satu 2. Memulai usaha wirausaha 3. Mengembangkan rencana kewirausahaan 4. Strategi pertumbuhan untuk usaha wirausaha 5. Sumber modal untuk wirausaha.</abstract>
+    </mods>
 
-        <abstract>
-            Buku mengenai pengelolaan proyek teknologi
-            informasi, perencanaan, risiko, dan kontrol proyek.
-        </abstract>
+    <!-- BUKU 12 -->
+    <mods ID="8116">
+        <titleInfo><title>Advanced Accounting global edition</title></titleInfo>
+        <name type="personal"><namePart>Floyd a. Beams, Joseph H. Anthony, Bruce Bettinghaus, Kenneth A. Smith </namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>Pearson : United Kingdom.</publisher>
+            <dateIssued>2018</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Kps</classification>
+        <identifier type="local">8116</identifier>
+        <location><url access="preview">/images/book-Advanced book-Accounting global edition.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Buku ini membahas tentang: 1. Kombinasi bisnis 2. Investasi saham - akuntansi dan pelaporan investor 3. Pengantar laporan keuangan konsolidasian 4. Teknik dan prosedur konsolidasi 5. Persediaan-transaksi laba antar perusahaan</abstract>
+    </mods>
 
+    <!-- BUKU 13 -->
+    <mods ID="8117">
+        <titleInfo><title>Mathematics for Economics and Business</title></titleInfo>
+        <name type="personal"><namePart>Ian Jacques</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>Pearson : United Kingdom.</publisher>
+            <dateIssued>2023</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Kps</classification>
+        <identifier type="local">8117</identifier>
+        <location><url access="preview">/images/book-Mathematics for Economics and Business.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Buku ini membahas tentang : Buku ini membahas tentang : 1.Pengantar aljabar, 2. Aljabar lanjutan, 3. Grafik persamaan linear, 4. Penyelesaian aljabar persamaan linear simultan, 5. Analisis penawaran dan permintaan, 6. Fungsi kuadrat, 7. Pendapatan, biaya, dan laba, 8. Indeks dan logaritma, 9. Fungsi eksponensial dan logaritma natural, 10. Deret geometri, 11. Penilaian investasi, 12. Turunan suatu fungsi, 13. Aturan diferensiasi, 14. Fungsi marginal, 15. Aturan diferensiasi lanjutan, 16. Fungsi beberapa variabel, 17 Elastisitas parsial dan fungsi marginal, 18 Statika komparatif, 19. Optimasi tanpa kendala, 20. Optimasi dengan kendala, 21. Pengganda Lagrange, 22. Integrasi tak tentu, 23. Integrasi tentu, 24. Operasi matriks dasar, 25. Inversi matriks, 26. Cramer aturan, 27.Solusi grafis dari masalah pemrograman linier, 28.Aplikasi pemrograman linier, 29.Persamaan perbedaan, 30.Persamaan diferensial</abstract>
+    </mods>
+
+    <!-- BUKU 14 -->
+    <mods ID="8118">
+        <titleInfo><title>Pearson New International Edition ; Starting out with programming logic and design</title></titleInfo>
+        <name type="personal"><namePart>Tony Gaddis</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>Pearson : England.</publisher>
+            <dateIssued>2014</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Kps</classification>
+        <identifier type="local">8118</identifier>
+        <location><url access="preview">/images/book-Pearson New International Edition; Starting out with programming logic and design.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>buku ini berisi tentang: 1. Input, pemrosesan dan output, 2. Modul, 3. Struktur keputusan dan logika boolean, 4. Struktur pengulangan, 5. Finctions, 6. Validasi masukan, 7. Array, 8. Menyortir dan mencari array</abstract>
+    </mods>
+
+    <!-- BUKU 15 -->
+    <mods ID="8119">
+        <titleInfo><title>Concepts of Programming Languages</title></titleInfo>
+        <name type="personal"><namePart>Robert W. Sebesta</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>Pearson : United Kingdom.</publisher>
+            <dateIssued>2023</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Kps</classification>
+        <identifier type="local">8119</identifier>
+        <location><url access="preview">/images/book-Concepts of Programming Languages.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Buku ini membahas tentang : 1. Alasan Mempelajari Konsep Bahasa Pemrograman, 2. Kriteria Evaluasi Bahasa, 3. Pertukaran Desain Bahasa, 4. Evolusi Bahasa Pemrograman Utama, 5. Langkah Pertama Menuju Kecanggihan: ALGOL 60, 6. Menggabungkan Fitur Imperatif dan Berorientasi Objek: C++, 7. Bahasa Berorientasi Objek Berbasis Imperatif: Java, 8. Menjelaskan Sintaks dan Semantik, 9. Masalah Umum dalam Mendeskripsikan Sintaks, 10. Mendeskripsikan Makna Program: Semantik Dinamis, 11. Analisis Leksikal dan Sintaksis, 12 Nama, Pengikatan, dan Cakupan, 13. Ekspresi dan Pernyataan Penugasan, 14. Masalah Desain untuk Tipe Data Abstrak, 15. Dukungan untuk Pemrograman Berorientasi Objek dalam Bahasa Tertentu</abstract>
+    </mods>
+
+    <!-- BUKU 16 -->
+    <mods ID="8120">
+        <titleInfo><title>Executive's guide to IT governance; Improving systems processess with service management,COBIT,and ITIL</title></titleInfo>
+        <name type="personal"><namePart>Robert R. Moeller</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>John Wiley And Sons : New Jersey.</publisher>
+            <dateIssued>2013</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Kps</classification>
+        <identifier type="local">8120</identifier>
+        <location><url access="preview">/images/book-Executive's guide to IT governance; Improving systems processess with service management,COBIT,and ITIL.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Buku ini adalah panduan eksekutif untuk konsep penting tata kelola TI ini. Fokus kami bukan pada spesialis TI yang memasang perangkat keras, perangkat lunak, dan koneksi jaringan TI atau sumber daya penting seperti auditor internal yang menguji dan meninjau proses TI.Buku ini membahas tentang: 1. Pentingnya tata kelola TI untuk semua perusahaan, 2. Konsep dasar pemerintahan dan aturan sarbanes-oxley, 3. Tata kelola perusahaan dan alat GRC, 4. Tata kelola TI dan kontrol internal koso, 5. COBIT dan lembaga tata kelola TI</abstract>
+    </mods>
+
+    <!-- BUKU 17 -->
+    <mods ID="8121">
+        <titleInfo><title>Organizational behavior a Practical,problem-solving approach</title></titleInfo>
+        <name type="personal"><namePart>Angelo Kinicki</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>MC GRAW HILL : New York.</publisher>
+            <dateIssued>2021</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Kps</classification>
+        <identifier type="local">8121</identifier>
+        <location><url access="preview">/images/book-Organizational behavior a Practical,problem-solving approach.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Buku ini membahas tentang: 1.Perilaku individu, 2. Nilai dan sikap, 3. Perbedaan dan emosi individu, 4. Persepsi sosial dan pengelolaan keragaman, 5. Landasan motivasi karyawan, 6. Manajemen kinerja, 7.Perilaku organisasi yang positif</abstract>
+    </mods>
+
+    <!-- BUKU 18 -->
+    <mods ID="8122">
+        <titleInfo><title>Aplikasi Analisis Multivariete dengan program IBM SPSS 23</title></titleInfo>
+        <name type="personal"><namePart>Imam Ghozali</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>Undip : Semarang.</publisher>
+            <dateIssued>2016</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Kps</classification>
+        <identifier type="local">8122</identifier>
+        <location><url access="preview">/images/book-Aplikasi Analisis Multivariete dengan program IBM SPSS 23.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Buku ini membahas tentang: 1. Skala pengukuran dan metode analisis data, 2. Pengenalan program SPSS, aplikasi statistik deskriptif dan crosstabs, 3. Data screening dan transformasi data, 4. Uji reliabilitas dan validitas suatu kontruk atau konsep, 5. Analisis REGRESI, 6. Uji asusmsi klasik, 7. Regresi dengan uji asusmsi klasik, variabel dummy dan chow test, 8. Model regresi dengan bentuk fungsional, 9. Analisis diskriminan, 10.Korelasi kanonikal (Canonical Correlation)</abstract>
+    </mods>
+
+    <!-- BUKU 19 -->
+    <mods ID="8123">
+        <titleInfo><title>Computer Organization and Architecture, Design for Performance</title></titleInfo>
+        <name type="personal"><namePart>William Stallings</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>Pearson : England.</publisher>
+            <dateIssued>2016</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Kps</classification>
+        <identifier type="local">8123</identifier>
+        <location><url access="preview">/images/book-Computer Organization and Architecture, Design for Performance.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Buku ini menjelaskan tentang: 1. Konsep dasar dan evaluasi komputer, 2. Tampilan tingkat atas fungsi komputer dan interkoneksi, 3. memori internal, 4. Memori eksternal Input / Output, 5. Aritmatika komputer, 6. Logika digital, 7. Set instruksi: karakteristik dan fungsi, 8. Struktur dan fungsi prosesor, 9. Unit pemrosesan grafis tujuan umum, 10.Proyek untuk pengajaran organisasi dan arsitektur k</abstract>
+    </mods>
+
+    <!-- BUKU 20 -->
+    <mods ID="8124">
+        <titleInfo><title>Compensation</title></titleInfo>
+        <name type="personal"><namePart>Barry Gerhart, Jerry M. Newman</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>MC GRAW HILL : Amerika.</publisher>
+            <dateIssued>2020</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Kps</classification>
+        <identifier type="local">8124</identifier>
+        <location><url access="preview">/images/book-Compensation.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Buku ini membahas tentang: 1. Memperkenalkan model pembayaran dan strategi pembayaran, 2. Totalitas keputusan, 3. Mendefinisikan penyelarasan internal, 4. Analisis pekerjaan, 5. Struktur berbasis pekerjaan dan evaluasi pekerjaan, 6. Struktur berbasis orang</abstract>
+    </mods>
+
+    <!-- BUKU 21 -->
+    <mods ID="8125">
+        <titleInfo><title>Computer Desktop Encyclopedia</title></titleInfo>
+        <name type="personal"><namePart>Alan Freedman</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>MC GRAW HILL : California.</publisher>
+            <dateIssued>2001</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Reference</classification>
+        <identifier type="local">8125</identifier>
+        <location><url access="preview">/images/book-Computer Desktop Encyclopedia.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Buku ini membahas tentang Komprehensif sangat up-to-date yang berisi lebih dari 15.000 istilah dan penjelasan yang mencakup banyak topik yang berkaitan dengan komputer digabungkan. Lebih dari koleksi definisi pengawakan, referensi unik ini termasuk jelas, deskripsi rinci dan ilustrasi mulai dari topik dasar sampai profesional komputer baik, siswa, guru dan teknisi. Termasuk penjelasan dari perangkat terbaru dan yang paling penting, sistem operasi, teknologi yang berhubungan dengan internet dan akronim, tidak ada buku lain dapat memberikan kedalaman dan luasnya cakupan ensiklopedia komputer desktop</abstract>
+    </mods>
+
+    <!-- BUKU 22 -->
+    <mods ID="8126">
+        <titleInfo><title>Kamus Lengkap Ekonomi</title></titleInfo>
+        <name type="personal"><namePart>Christopher Pass</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>ERLANGGA : JAKARTA</publisher>
+            <dateIssued>1994</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Reference</classification>
+        <identifier type="local">8126</identifier>
+        <location><url access="preview">/images/book-Kamus Lengkap Ekonomi.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Kamus lengkap Ekonomi ini yang bermula berjudul Dictionary of economics merupakan kamus handal ilmu pengetahuan dari harperCollins, UK, untuk bidang ekonomi, yang sudah dimutakhirkan dan kini sudah mengalami edisi kedua. Kamus ini menyajikan cakupan yang luas mengenai istilah-istilah pokok ilmu ekonomi yang difokuskan pada konsep-konsep dan prinsip-prinsip teoretis serta penerapan praktisnya.</abstract>
+    </mods>
+
+    <!-- BUKU 23 -->
+    <mods ID="8127">
+        <titleInfo><title>Kamus Lengkap: Indonesia-Inggris, Inggris-Indonesia</title></titleInfo>
+        <name type="personal"><namePart>K. Adi Gunawan </namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>Kartika : Surabaya</publisher>
+            <dateIssued>-</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Reference</classification>
+        <identifier type="local">8127</identifier>
+        <location><url access="preview">/images/book-Kamus Lengkap.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Buku ini berisi tentang: Tenses, Regular Verbs, Irregular Verbs.</abstract>
+    </mods>
+
+    <!-- BUKU 24 -->
+    <mods ID="8128">
+        <titleInfo><title>Standar Akuntansi Keuangan Per 1 Oktober 2004</title></titleInfo>
+        <name type="personal"><namePart>Ikatan Akuntan Indonesia</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>SALEMBA EMPAT : JAKARTA</publisher>
+            <dateIssued>2004</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Reference</classification>
+        <identifier type="local">8128</identifier>
+        <location><url access="preview">/images/book-Standar Akuntansi Keuangan Per 1 Oktober 2004.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Buku ini membahas tentang: Sejarah standar akuntansi keuangan, Kerangka dasar penyusunan dan penyajian laporan keuangan.</abstract>
+    </mods>
+
+    <!-- BUKU 25 -->
+    <mods ID="8129">
+        <titleInfo><title>KUP Ketentuan Umum dan Tata Cara Perpajakan</title></titleInfo>
+        <name type="personal"><namePart>Muhammad Rusjdi</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>Indeks : JAKARTA</publisher>
+            <dateIssued>2007</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Reference</classification>
+        <identifier type="local">8129</identifier>
+        <location><url access="preview">/images/book-kup.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Buku ini membahas tentang: Ketentuan umum dan tata cara perpajakan, Administrasi Perpajakan, Nomor pokok wajib pajak.</abstract>
+    </mods>
+
+    <!-- BUKU 26 -->
+    <mods ID="8130">
+        <titleInfo><title>Kamus Pajak: Daftar singkatan , istilah perpajakan, akuntansi, bea dan cukai, serta peradilan pajak disertai dengan penjelasan</title></titleInfo>
+        <name type="personal"><namePart>Adnan Abdullah</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>ANDI : YOGYAKARTA</publisher>
+            <dateIssued>2019</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Reference</classification>
+        <identifier type="local">8130</identifier>
+        <location><url access="preview">/images/book-Kamus Pajak, Daftar singkatan , istilah perpajakan, akuntansi, bea dan cukai, serta peradilan pajak disertai dengan penjelasan.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Kamus Pajak ini menjelaskan Daftar singkatan, istilah perpajakan, akuntansi, hukum, dan cukai, serta penelitian pajak disertai dengan penjelasan terkait.</abstract>
+    </mods>
+
+    <!-- BUKU 27 -->
+    <mods ID="8131">
+        <titleInfo><title>Standar Profesional Akuntan Publik : Standar Audit (SA) 530 Sampling Audit</title></titleInfo>
+        <name type="personal"><namePart>Institut Akuntan Publik Indonesia (IAPI)</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>SALEMBA EMPAT : JAKARTA</publisher>
+            <dateIssued>2013</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Reference</classification>
+        <identifier type="local">8131</identifier>
+        <location><url access="preview">/images/book-Standar Audit (SA) 530 Sampling Audit.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Standar audit ini diterapkan ketika auditor telah memutuskan untuk menggunakan sampling audit dalam pelaksanaan prosedur audit berkaitan dengan penggunaan sampling statistik maupun nonstatistik.</abstract>
+    </mods>
+
+    <!-- BUKU 28 -->
+    <mods ID="8132">
+        <titleInfo><title>Standar Profesional Akuntan Publik 31 Maret 2011</title></titleInfo>
+        <name type="personal"><namePart>Institut Akuntan Publik Indonesia (IAPI)</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>SALEMBA EMPAT : JAKARTA</publisher>
+            <dateIssued>2011</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Reference</classification>
+        <identifier type="local">8132</identifier>
+        <location><url access="preview">/images/book-Standar Profesional Akuntan Publik 31 Maret 2011.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Standar Profesional Akuntan Publik (SPAP) merupakan kodifikasi berbagai pernyataan standar teknis yang memberikan panduan bagi praktisi, akuntan publik, dan staf.</abstract>
+    </mods>
+
+    <!-- BUKU 29 -->
+    <mods ID="8133">
+        <titleInfo><title>Standar Profesional Akuntan Publik : Seri Penilaian Risiko</title></titleInfo>
+        <name type="personal"><namePart>Institut Akuntan Publik Indonesia (IAPI)</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>SALEMBA EMPAT : JAKARTA</publisher>
+            <dateIssued>2016</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Reference</classification>
+        <identifier type="local">8133</identifier>
+        <location><url access="preview">/images/book-standar Profesional Akuntan Publik; Seri Penilaian Risiko.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Standar Profesional Akuntan Publik ini membahas tentang: Keterlibatan anggota tim perikatan utama, Aktivitas audit perikatan, Dokumentasi.</abstract>
+    </mods>
+
+    <!-- BUKU 30 -->
+    <mods ID="8134">
+        <titleInfo><title>Kamus Praktis sehari-hari bahasa Indonesia mandarin</title></titleInfo>
+        <name type="personal"><namePart>Hin Goan Ganawan</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>ANDI : YOGYAKARTA</publisher>
+            <dateIssued>2005</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Reference</classification>
+        <identifier type="local">8134</identifier>
+        <location><url access="preview">/images/book-Kamus Praktis sehari-hari bahasa Indonesia mandarin.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Kamus Indonesia-mandarin ini disusun sedemikian rupa untuk membantu teman-teman dengan mencari padanan suatu istilah kata benda untuk benda, tanaman, buah, atau hewan.</abstract>
+    </mods>
+
+    <!-- BUKU 31 -->
+    <mods ID="8135">
+        <titleInfo><title>Tip dan Trik Meningkatkan Efisiensi, Produktivitas dan Profitabilitas</title></titleInfo>
+        <name type="personal"><namePart>Fransisccus Xaverius Sadikin</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>ANDI : YOGYAKARTA.</publisher>
+            <dateIssued>2005</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Textbook</classification>
+        <identifier type="local">8135</identifier>
+        <location><url access="preview">/images/book-Tip dan Trik Meningkatkan Efisiensi, Produktivitas dan Profitabilitas.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Pokok bahasan buku ini: Perubahan adalah sikap dasar manusia dalam merealisasikan sesuatu yang sudah diperoleh menjadi lebih dan lebih sehingga dalam usaha yang minimal akan mendapatkan hasil yang optimal.</abstract>
+    </mods>
+
+    <!-- BUKU 32 -->
+    <mods ID="8136">
+        <titleInfo><title>How they started digital : Bagaimana 25 ide - ide bagus menjadi bisnis-bisnis digital yang spektakuler</title></titleInfo>
+        <name type="personal"><namePart>David Lester</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>Gramedia Pustaka Utama : JAKARTA.</publisher>
+            <dateIssued>2015</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Textbook</classification>
+        <identifier type="local">8136</identifier>
+        <location><url access="preview">/images/book-How they started digital; Bagaimana 25 ide - ide bagus menjadi bisnis-bisnis digital yang spektakuler.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Media penuh dengan berita utama tentang kisah sukses digital terbaru dan miliarder muda. Tetapi bagaimana bisnis-bisnis ini benar-benar merintis usahanya? Apa saja langkah-langkah untuk sukses?</abstract>
+    </mods>
+
+    <!-- BUKU 33 -->
+    <mods ID="8137">
+        <titleInfo><title>145 Q &amp; A Start Your Own Business - pasti bisa buka usaha</title></titleInfo>
+        <name type="personal"><namePart>Sigma</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>ANDI : YOGYAKARTA.</publisher>
+            <dateIssued>2011</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Textbook</classification>
+        <identifier type="local">8137</identifier>
+        <location><url access="preview">/images/book-145 Q &amp; A Start Your Own Business - pasti bisa buka usaha.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Buku ini hadir sebagai jawaban atas pertanyaan yang sering diajukan oleh banyak orang saat mereka akan membuka usaha. Ditujukan bagi siapa saja yang mempunyai impian menjadi pengusaha mandiri.</abstract>
+    </mods>
+
+    <!-- BUKU 34 -->
+    <mods ID="8138">
+        <titleInfo><title>Psikologi Komunikasi</title></titleInfo>
+        <name type="personal"><namePart>Morissan</namePart></name>
+        <typeOfResource>text</typeOfResource>
+        <genre>Book</genre>
+        <originInfo>
+            <publisher>Ghalia Indonesia : Bogor.</publisher>
+            <dateIssued>2010</dateIssued>
+        </originInfo>
+        <language><languageTerm type="text">Indonesian</languageTerm></language>
+        <classification>Textbook</classification>
+        <identifier type="local">8138</identifier>
+        <location><url access="preview">/images/book-Psikologi Komunikasi.webp</url></location>
+        <note type="stok">10</note>
+        <note type="lokasiRak">Rak B-15</note>
+        <abstract>Buku ini membahas tentang: 1. Penilaian, 2. proses berpikir dan merancang strategi pesan, 3. rencana tindakan dan logika pesan, 4. penyelenggaraan komunikasi.</abstract>
     </mods>
 
 </modsCollection>

@@ -139,6 +139,26 @@ function parseBook(
             modsElement
         );
 
+    // --- TAMBAHAN BARU: Mengambil Cover, Stok, dan Lokasi Rak ---
+    
+    // 1. Ambil URL cover
+    const cover = getText(modsElement, "url");
+
+    // 2. Ambil atribut <note> untuk Stok dan Lokasi Rak
+    let stok = "";
+    let lokasiRak = "";
+    
+    const notes = getElements(modsElement, "note");
+    notes.forEach((note) => {
+        const type = note.getAttribute("type");
+        if (type === "stok") {
+            stok = note.textContent.trim();
+        } else if (type === "lokasiRak") {
+            lokasiRak = note.textContent.trim();
+        }
+    });
+    // ------------------------------------------------------------
+
     const id =
         modsElement.getAttribute("ID") ||
         identifier ||
@@ -154,9 +174,11 @@ function parseBook(
         kategori: category,
         identifier,
         abstrak: abstract,
-        cover: "",
-        stok: 5,
-        lokasi: "Rak A-01"
+        
+        // Update hasil return menggunakan variabel yang baru diekstrak
+        cover: cover,
+        stok: stok !== "" ? Number(stok) : 0, 
+        lokasiRak: lokasiRak || "-" 
     };
 }
 

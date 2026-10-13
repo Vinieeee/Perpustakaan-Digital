@@ -1,22 +1,19 @@
-import {
-    BrowserRouter,
-    Navigate,
-    Route,
-    Routes
-} from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import UserLayout from "./layouts/UserLayout";
 import AdminLayout from "./layouts/AdminLayout";
 
-import UserLogin from "./pages/user/UserLogin";
+// Import komponen Login gabungan yang baru
+import Login from "./pages/Login";
+
+// Komponen User
 import Home from "./pages/user/Home";
 import Gallery from "./pages/user/Gallery";
 import BookDetail from "./pages/user/BookDetail";
 import Contact from "./pages/user/Contact";
 import UserBorrowingHistory from "./pages/user/UserBorrowingHistory";
 
-
-import AdminLogin from "./pages/admin/AdminLogin";
+// Komponen Admin
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminBooks from "./pages/admin/AdminBooks";
 import AdminAddBook from "./pages/admin/AdminAddBook";
@@ -26,19 +23,23 @@ import AdminBorrowings from "./pages/admin/AdminBorrowings";
 import AdminBorrowingHistory from "./pages/admin/AdminBorrowingHistory";
 
 import { useAuth } from "./context/AuthContext";
+import { useUser } from "./context/UserContext";
 
-function ProtectedRoute({ children }) {
+// Proteksi Khusus Admin
+function AdminProtectedRoute({ children }) {
     const { isLoggedIn } = useAuth();
-
     if (!isLoggedIn) {
-        return (
-            <Navigate
-                to="/admin/login"
-                replace
-            />
-        );
+        return <Navigate to="/login" replace />;
     }
+    return children;
+}
 
+// Proteksi Khusus User
+function UserProtectedRoute({ children }) {
+    const { isLoggedIn } = useUser();
+    if (!isLoggedIn) {
+        return <Navigate to="/login" replace />;
+    }
     return children;
 }
 
@@ -46,103 +47,48 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
+                
+                {/* ROOT ROUTE: Arahkan langsung ke halaman Login */}
+                <Route path="/" element={<Navigate to="/login" replace />} />
+                
+                {/* HALAMAN LOGIN TUNGGAL (User & Admin) */}
+                <Route path="/login" element={<Login />} />
 
-                {/* USER */}
-                <Route element={<UserLayout/>}>
-
-                    <Route
-                        path="/login"
-                        element={<UserLogin />}
-                    />
-
-                    <Route
-                        path="/"
-                        element={<Home />}
-                    />
-
-                    <Route
-                        path="/galeri"
-                        element={<Gallery />}
-                    />
-
-                    <Route
-                        path="/galeri/buku/:id"
-                        element={<BookDetail />}
-                    />
-
-                    <Route
-                        path="/contact"
-                        element={<Contact />}
-                    />
-                    <Route
-                        path="/riwayat-peminjaman"
-                        element={<UserBorrowingHistory />}
-                    />
-                </Route>
-
-                {/* ADMIN LOGIN */}
-                <Route
-                    path="/admin/login"
-                    element={<AdminLogin />}
-                />
-
-                {/* ADMIN */}
-                <Route
-                    path="/admin"
+                {/* AREA USER (Harus Login sebagai User) */}
+                <Route 
                     element={
-                        <ProtectedRoute>
-                            <AdminLayout />
-                        </ProtectedRoute>
+                        <UserProtectedRoute>
+                            <UserLayout/>
+                        </UserProtectedRoute>
                     }
                 >
-
-                    <Route
-                        index
-                        element={<AdminDashboard />}
-                    />
-
-                    <Route
-                        path="buku"
-                        element={<AdminBooks />}
-                    />
-
-                    <Route
-                        path="buku/tambah"
-                        element={<AdminAddBook />}
-                    />
-
-                    <Route
-                        path="buku/edit/:id"
-                        element={<AdminEditBook />}
-                    />
-
-                    <Route
-                        path="pesan"
-                        element={<AdminMessages />}
-                    />
-
-                    <Route
-                        path="peminjaman"
-                        element={<AdminBorrowings />}
-                    />
-
-                    <Route
-                        path="riwayat-peminjaman"
-                        element={<AdminBorrowingHistory />}
-                    />
-
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/galeri" element={<Gallery />} />
+                    <Route path="/galeri/buku/:id" element={<BookDetail />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/riwayat-peminjaman" element={<UserBorrowingHistory />} />
                 </Route>
 
-                {/* FALLBACK */}
-                <Route
-                    path="*"
+                {/* AREA ADMIN (Harus Login sebagai Admin) */}
+                <Route 
+                    path="/admin" 
                     element={
-                        <Navigate
-                            to="/"
-                            replace
-                        />
+                        <AdminProtectedRoute>
+                            <AdminLayout />
+                        </AdminProtectedRoute>
                     }
-                />
+                >
+                    <Route index element={<AdminDashboard />} />
+                    <Route path="buku" element={<AdminBooks />} />
+                    <Route path="buku/tambah" element={<AdminAddBook />} />
+                    <Route path="buku/edit/:id" element={<AdminEditBook />} />
+                    <Route path="pesan" element={<AdminMessages />} />
+                    <Route path="peminjaman" element={<AdminBorrowings />} />
+                    <Route path="riwayat-peminjaman" element={<AdminBorrowingHistory />} />
+                </Route>
+
+                {/* FALLBACK (Jika URL tidak ditemukan, kembalikan ke Login) */}
+                <Route path="*" element={<Navigate to="/login" replace />} />
 
             </Routes>
         </BrowserRouter>
