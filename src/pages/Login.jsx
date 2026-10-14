@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
+import Swal from "sweetalert2"; // Tambahkan SweetAlert2
 import { useUser } from "../context/UserContext";
 import { useAuth } from "../context/AuthContext";
 
@@ -11,8 +12,8 @@ function Login() {
     const { login: adminLogin, isLoggedIn: isAdminLoggedIn } = useAuth();
 
     // States
-    const [activeTab, setActiveTab] = useState("user"); // 'user' | 'admin'
-    const [isRegister, setIsRegister] = useState(false); // Mode register untuk user
+    const [activeTab, setActiveTab] = useState("user"); 
+    const [isRegister, setIsRegister] = useState(false); 
     
     // Form States
     const [nama, setNama] = useState("");
@@ -22,11 +23,15 @@ function Login() {
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState("");
 
-    // Jika sudah login, langsung arahkan ke halaman masing-masing
-    if (isAdminLoggedIn) return <Navigate to="/admin" replace />;
-    if (isUserLoggedIn) return <Navigate to="/home" replace />;
+    // --- TAMBAHAN: Cek apakah dia tamu ---
+    const userRole = localStorage.getItem("userRole");
+    const isGuest = userRole === "guest";
 
-    // Fungsi untuk reset form saat pindah tab
+    // Jika sudah login (DAN BUKAN TAMU), langsung arahkan ke halaman masing-masing
+    if (isAdminLoggedIn) return <Navigate to="/admin" replace />;
+    if (isUserLoggedIn && !isGuest) return <Navigate to="/home" replace />;
+    // -------------------------------------
+
     const handleTabChange = (tab) => {
         setActiveTab(tab);
         setError("");
@@ -42,7 +47,6 @@ function Login() {
         setError("");
 
         if (activeTab === "admin") {
-            // --- LOGIKA ADMIN ---
             const result = adminLogin(username, password);
             if (result.success) {
                 navigate("/admin");
@@ -50,9 +54,7 @@ function Login() {
                 setError(result.message || "Username atau password admin salah.");
             }
         } else {
-            // --- LOGIKA USER ---
             if (isRegister) {
-                // Registrasi User: Simpan nama, email, dan password ke localStorage
                 if (password.length < 6) {
                     setError("Password minimal 6 karakter.");
                     return;
@@ -60,15 +62,25 @@ function Login() {
                 const newUser = { nama, email, password };
                 localStorage.setItem("registeredUser", JSON.stringify(newUser));
                 
-                alert("Registrasi berhasil! Silakan masuk dengan email dan password Anda.");
-                setIsRegister(false); // Pindah ke tab login
-                setPassword(""); // Kosongkan password untuk login
+                // Ganti alert bawaan dengan SweetAlert2
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registrasi Berhasil!',
+                    text: 'Silakan masuk dengan email dan password Anda.',
+                    background: '#0f172a',
+                    color: '#f8fafc',
+                    confirmButtonColor: '#0891b2'
+                });
+
+                setIsRegister(false); 
+                setPassword(""); 
             } else {
-                // Login User: Cek email dan password
                 const registered = JSON.parse(localStorage.getItem("registeredUser"));
                 
                 if (registered && registered.email === email && registered.password === password) {
-                    // Berhasil login: Lempar nama dari data terdaftar ke context
+                    // Set role sebagai user normal (member) agar tidak dianggap tamu lagi
+                    localStorage.setItem("userRole", "member");
+                    
                     const result = userLogin(registered.nama, email);
                     if (result.success) {
                         navigate("/home");
@@ -82,17 +94,21 @@ function Login() {
         }
     };
 
+    const handleGuestLogin = () => {
+        localStorage.setItem("userRole", "guest");
+        userLogin("Tamu", "guest@perpusdigital.com");
+        navigate("/home");
+    };
+
     return (
         <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-950 px-6 py-12">
             
-            {/* Background decoration */}
             <div className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl" />
 
             <div className="relative z-10 w-full max-w-md">
                 <div className="overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 shadow-2xl shadow-black/30">
                     
-                    {/* Header & Tabs */}
                     <div className="border-b border-slate-800 px-8 pt-8">
                         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-cyan-950 text-3xl shadow-lg shadow-cyan-900/20">
                             📚
@@ -123,7 +139,6 @@ function Login() {
                         </div>
                     </div>
 
-                    {/* Form */}
                     <form onSubmit={handleSubmit} className="space-y-5 p-8">
                         
                         {error && (
@@ -132,7 +147,6 @@ function Login() {
                             </div>
                         )}
 
-                        {/* --- FORM PENGGUNA --- */}
                         {activeTab === "user" ? (
                             <>
                                 {isRegister && (
@@ -197,9 +211,26 @@ function Login() {
                                         {isRegister ? "Masuk di sini" : "Daftar di sini"}
                                     </button>
                                 </p>
+
+                                {!isRegister && (
+                                    <>
+                                        <div className="my-6 flex items-center gap-3">
+                                            <hr className="flex-1 border-slate-800" />
+                                            <span className="text-xs font-semibold text-slate-500">ATAU</span>
+                                            <hr className="flex-1 border-slate-800" />
+                                        </div>
+
+                                        <button 
+                                            type="button"
+                                            onClick={handleGuestLogin}
+                                            className="w-full rounded-xl border border-slate-700 bg-slate-950 py-3 font-bold text-slate-400 transition hover:border-slate-600 hover:text-white"
+                                        >
+                                            Masuk sebagai Tamu
+                                        </button>
+                                    </>
+                                )}
                             </>
                         ) : (
-                            /* --- FORM ADMIN --- */
                             <>
                                 <div>
                                     <label className="mb-2 block text-sm font-semibold text-slate-300">Username</label>

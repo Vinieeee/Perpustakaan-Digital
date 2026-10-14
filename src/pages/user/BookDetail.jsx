@@ -4,6 +4,7 @@ import {
     useParams,
     useSearchParams
 } from "react-router-dom";
+import Swal from "sweetalert2"; // Tambahan SweetAlert2
 
 import useBooks from "../../hooks/useBooks";
 import useBorrowings from "../../hooks/useBorrowings";
@@ -40,6 +41,10 @@ function BookDetail() {
     const stok = Number(book?.stok) || 0;
     const tersedia = stok > 0;
 
+    // Cek apakah user adalah tamu (guest)
+    const userRole = localStorage.getItem("userRole");
+    const isGuest = userRole === "guest";
+
     const modePeminjaman =
         searchParams.get("pinjam");
 
@@ -54,6 +59,32 @@ function BookDetail() {
             return;
         }
 
+        // --- TAMBAHAN: Pengecekan Guest Mode dengan SweetAlert2 ---
+        if (!isLoggedIn || isGuest) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Akses Terbatas',
+                text: 'Kamu harus login sebagai member untuk meminjam buku. Pergi ke halaman login?',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Login',
+                cancelButtonText: 'Batal',
+                background: '#0f172a',
+                color: '#f8fafc',
+                confirmButtonColor: '#0891b2',
+                cancelButtonColor: '#64748b'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate("/login", {
+                        state: {
+                            from: `/galeri/buku/${book.id}`
+                        }
+                    });
+                }
+            });
+            return; 
+        }
+        // ---------------------------------------
+
         setSearchParams({
             pinjam: "true"
         });
@@ -64,7 +95,8 @@ function BookDetail() {
     };
 
     const handleAjukanPeminjaman = () => {
-        if (!user) {
+        // --- TAMBAHAN: Keamanan ekstra jika guest tembus ---
+        if (!user || isGuest) {
             navigate("/login", {
                 state: {
                     from: `/galeri/buku/${book.id}?pinjam=confirm`
@@ -81,13 +113,27 @@ function BookDetail() {
         });
 
         if (!result.success) {
-            alert(result.message);
+            // SweetAlert2 untuk error peminjaman
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal Meminjam',
+                text: result.message,
+                background: '#0f172a',
+                color: '#f8fafc',
+                confirmButtonColor: '#0891b2'
+            });
             return;
         }
 
-        alert(
-            "Peminjaman berhasil diajukan dan sedang menunggu persetujuan admin."
-        );
+        // SweetAlert2 untuk sukses peminjaman
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil Diajukan!',
+            text: 'Peminjaman berhasil diajukan dan sedang menunggu persetujuan admin.',
+            background: '#0f172a',
+            color: '#f8fafc',
+            confirmButtonColor: '#0891b2'
+        });
 
         setSearchParams({});
     };
@@ -364,7 +410,7 @@ function BookDetail() {
 
                                     <div>
                                         <p className="font-bold text-slate-900 dark:text-white">
-                                            {book.lokasi || "Belum ditentukan"}
+                                            {book.lokasiRak || "Belum ditentukan"}
                                         </p>
 
                                         <p className="text-sm text-slate-500 dark:text-slate-400">
@@ -543,7 +589,7 @@ function BookDetail() {
                             <button
                                 type="button"
                                 onClick={() => {
-                                    if (!isLoggedIn) {
+                                    if (!isLoggedIn || isGuest) {
                                         navigate("/login", {
                                             state: {
                                                 from: `/galeri/buku/${book.id}?pinjam=true`
@@ -625,7 +671,7 @@ function BookDetail() {
                                 <p>
                                     Lokasi:{" "}
                                     <span className="font-medium">
-                                        {book.lokasi || "Belum ditentukan"}
+                                        {book.lokasiRak || "Belum ditentukan"}
                                     </span>
                                 </p>
 
@@ -723,4 +769,3 @@ function BookDetail() {
 }
 
 export default BookDetail;
-

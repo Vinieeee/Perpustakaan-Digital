@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2"; // Tambahkan import SweetAlert2
 
 const initialForm = {
     judul: "",
@@ -32,29 +33,37 @@ function BookForm({
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        // Fungsi bantuan agar pemanggilan SweetAlert lebih rapi
+        const showWarning = (pesan) => {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Data Belum Lengkap!',
+                text: pesan,
+                background: '#0f172a', // Warna slate-900
+                color: '#f8fafc', // Warna teks
+                confirmButtonColor: '#0891b2', // Warna cyan-600
+                confirmButtonText: 'Oke, paham'
+            });
+        };
+
         if (!form.judul.trim()) {
-            alert("Judul buku wajib diisi.");
-            return;
+            return showWarning("Judul buku wajib diisi.");
         }
 
         if (!form.penulis.trim()) {
-            alert("Penulis wajib diisi.");
-            return;
+            return showWarning("Penulis wajib diisi.");
         }
 
         if (!form.penerbit.trim()) {
-            alert("Penerbit wajib diisi.");
-            return;
+            return showWarning("Penerbit wajib diisi.");
         }
 
         if (!form.tahun) {
-            alert("Tahun terbit wajib diisi.");
-            return;
+            return showWarning("Tahun terbit wajib diisi.");
         }
 
         if (!form.kategori.trim()) {
-            alert("Kategori wajib diisi.");
-            return;
+            return showWarning("Kategori wajib diisi.");
         }
 
         onSubmit({
