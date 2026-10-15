@@ -230,4 +230,4 @@ export {
     fetchBooksFromXML
 };
 
-export default fetchBooksFromXML;
+export default fetchBooksFromXML
