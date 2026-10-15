@@ -22,6 +22,7 @@ import AdminMessages from "./pages/admin/AdminMessages";
 import AdminBorrowings from "./pages/admin/AdminBorrowings";
 import AdminBorrowingHistory from "./pages/admin/AdminBorrowingHistory";
 
+// Pastikan file-file konteks ini benar-benar ada di folder src/context/
 import { useAuth } from "./context/AuthContext";
 import { useUser } from "./context/UserContext";
 
@@ -58,7 +59,7 @@ function App() {
                 <Route 
                     element={
                         <UserProtectedRoute>
-                            <UserLayout/>
+                            <UserLayout />
                         </UserProtectedRoute>
                     }
                 >
