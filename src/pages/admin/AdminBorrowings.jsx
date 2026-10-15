@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import {
     useMemo,
     useState
@@ -87,126 +88,98 @@ function AdminBorrowings() {
         return "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300";
     };
 
-    // ================================
+// ================================
     // SETUJUI PEMINJAMAN
     // ================================
-    const handleApprove = (
-        borrowing
-    ) => {
-        if (
-            borrowing.status !==
-            "Menunggu Persetujuan"
-        ) {
-            alert(
-                "Peminjaman ini sudah diproses."
-            );
+    const handleApprove = (borrowing) => {
+        if (borrowing.status !== "Menunggu Persetujuan") {
+            Swal.fire({ icon: 'info', text: 'Peminjaman ini sudah diproses.', background: '#0f172a', color: '#f8fafc', confirmButtonColor: '#0891b2' });
             return;
         }
 
-        const book = books.find(
-            (item) =>
-                String(item.id) ===
-                String(borrowing.bookId)
-        );
+        const book = books.find((item) => String(item.id) === String(borrowing.bookId));
 
         if (!book) {
-            alert(
-                "Data buku tidak ditemukan."
-            );
+            Swal.fire({ icon: 'error', text: 'Data buku tidak ditemukan.', background: '#0f172a', color: '#f8fafc', confirmButtonColor: '#0891b2' });
             return;
         }
 
-        const stokSaatIni =
-            Number(book.stok) || 0;
+        const stokSaatIni = Number(book.stok) || 0;
 
         if (stokSaatIni <= 0) {
-            alert(
-                "Peminjaman tidak dapat disetujui karena stok buku sudah habis."
-            );
+            Swal.fire({ icon: 'error', text: 'Peminjaman tidak dapat disetujui karena stok buku sudah habis.', background: '#0f172a', color: '#f8fafc', confirmButtonColor: '#0891b2' });
             return;
         }
 
-        const konfirmasi =
-            window.confirm(
-                `Setujui peminjaman buku "${borrowing.judul}" untuk ${borrowing.namaPeminjam}?`
-            );
+        Swal.fire({
+            title: 'Setujui Peminjaman?',
+            text: `Setujui peminjaman buku "${borrowing.judul}" untuk ${borrowing.namaPeminjam}?`,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#10b981',
+            cancelButtonColor: '#64748b',
+            confirmButtonText: 'Ya, Setujui',
+            cancelButtonText: 'Batal',
+            background: '#0f172a',
+            color: '#f8fafc'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const tanggalPinjam = new Date();
+                const tanggalJatuhTempo = new Date();
+                tanggalJatuhTempo.setDate(tanggalJatuhTempo.getDate() + 7);
 
-        if (!konfirmasi) {
-            return;
-        }
+                updateBook(book.id, { stok: stokSaatIni - 1 });
+                updateBorrowing(borrowing.id, {
+                    status: "Dipinjam",
+                    tanggalPinjam: tanggalPinjam.toISOString(),
+                    tanggalJatuhTempo: tanggalJatuhTempo.toISOString()
+                });
 
-        const tanggalPinjam =
-            new Date();
-
-        const tanggalJatuhTempo =
-            new Date();
-
-        tanggalJatuhTempo.setDate(
-            tanggalJatuhTempo.getDate() +
-                7
-        );
-
-        // Kurangi stok buku
-        updateBook(
-            book.id,
-            {
-                stok:
-                    stokSaatIni - 1
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: 'Peminjaman disetujui. Stok buku dikurangi 1 dan batas pengembalian ditetapkan 7 hari.',
+                    icon: 'success',
+                    background: '#0f172a',
+                    color: '#f8fafc',
+                    confirmButtonColor: '#0891b2'
+                });
             }
-        );
-
-        // Update data peminjaman
-        updateBorrowing(
-            borrowing.id,
-            {
-                status: "Dipinjam",
-                tanggalPinjam:
-                    tanggalPinjam.toISOString(),
-                tanggalJatuhTempo:
-                    tanggalJatuhTempo.toISOString()
-            }
-        );
-
-        alert(
-            "Peminjaman berhasil disetujui.\n\nStok buku telah dikurangi 1 dan batas pengembalian ditetapkan 7 hari."
-        );
+        });
     };
 
     // ================================
     // TOLAK PEMINJAMAN
     // ================================
-    const handleReject = (
-        borrowing
-    ) => {
-        if (
-            borrowing.status !==
-            "Menunggu Persetujuan"
-        ) {
-            alert(
-                "Peminjaman ini sudah diproses."
-            );
+    const handleReject = (borrowing) => {
+        if (borrowing.status !== "Menunggu Persetujuan") {
+            Swal.fire({ icon: 'info', text: 'Peminjaman ini sudah diproses.', background: '#0f172a', color: '#f8fafc', confirmButtonColor: '#0891b2' });
             return;
         }
 
-        const konfirmasi =
-            window.confirm(
-                `Tolak pengajuan peminjaman dari ${borrowing.namaPeminjam} untuk buku "${borrowing.judul}"?`
-            );
-
-        if (!konfirmasi) {
-            return;
-        }
-
-        updateBorrowing(
-            borrowing.id,
-            {
-                status: "Ditolak"
+        Swal.fire({
+            title: 'Tolak Peminjaman?',
+            text: `Tolak pengajuan peminjaman dari ${borrowing.namaPeminjam} untuk buku "${borrowing.judul}"?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ef4444',
+            cancelButtonColor: '#64748b',
+            confirmButtonText: 'Ya, Tolak',
+            cancelButtonText: 'Batal',
+            background: '#0f172a',
+            color: '#f8fafc'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                updateBorrowing(borrowing.id, { status: "Ditolak" });
+                Swal.fire({
+                    title: 'Ditolak!',
+                    text: 'Pengajuan peminjaman telah ditolak.',
+                    icon: 'success',
+                    background: '#0f172a',
+                    color: '#f8fafc',
+                    confirmButtonColor: '#0891b2'
+                });
             }
-        );
-
-        alert(
-            "Pengajuan peminjaman telah ditolak."
-        );
+        });
     };
 
     return (
@@ -503,29 +476,23 @@ function AdminBorrowings() {
                                                     <button
                                                         type="button"
                                                         onClick={() =>
-                                                            alert(
-                                                                `Detail Peminjaman\n\nPeminjam: ${borrowing.namaPeminjam}\nEmail: ${borrowing.emailPeminjam}\nBuku: ${borrowing.judul}\nStatus: ${borrowing.status}\nTanggal Pengajuan: ${new Date(
-                                                                    borrowing.tanggalPengajuan
-                                                                ).toLocaleDateString(
-                                                                    "id-ID"
-                                                                )}\nTanggal Pinjam: ${
-                                                                    borrowing.tanggalPinjam
-                                                                        ? new Date(
-                                                                            borrowing.tanggalPinjam
-                                                                        ).toLocaleDateString(
-                                                                            "id-ID"
-                                                                        )
-                                                                        : "-"
-                                                                }\nJatuh Tempo: ${
-                                                                    borrowing.tanggalJatuhTempo
-                                                                        ? new Date(
-                                                                            borrowing.tanggalJatuhTempo
-                                                                        ).toLocaleDateString(
-                                                                            "id-ID"
-                                                                        )
-                                                                        : "-"
-                                                                }`
-                                                            )
+                                                            Swal.fire({
+                                                                title: 'Detail Peminjaman',
+                                                                html: `
+                                                                    <div style="text-align: left; font-size: 14px; line-height: 1.8;">
+                                                                        <p><strong>Peminjam:</strong> ${borrowing.namaPeminjam}</p>
+                                                                        <p><strong>Email:</strong> ${borrowing.emailPeminjam}</p>
+                                                                        <p><strong>Buku:</strong> ${borrowing.judul}</p>
+                                                                        <p><strong>Status:</strong> ${borrowing.status}</p>
+                                                                        <p><strong>Tgl Pengajuan:</strong> ${new Date(borrowing.tanggalPengajuan).toLocaleDateString("id-ID")}</p>
+                                                                        <p><strong>Tgl Pinjam:</strong> ${borrowing.tanggalPinjam ? new Date(borrowing.tanggalPinjam).toLocaleDateString("id-ID") : "-"}</p>
+                                                                        <p><strong>Jatuh Tempo:</strong> ${borrowing.tanggalJatuhTempo ? new Date(borrowing.tanggalJatuhTempo).toLocaleDateString("id-ID") : "-"}</p>
+                                                                    </div>
+                                                                `,
+                                                                background: '#0f172a',
+                                                                color: '#f8fafc',
+                                                                confirmButtonColor: '#0891b2'
+                                                            })
                                                         }
                                                         className="rounded-lg border border-slate-200 px-3.5 py-2 text-sm font-bold text-slate-700 transition hover:border-cyan-300 hover:text-cyan-600 dark:border-slate-700 dark:text-slate-300 dark:hover:border-cyan-700 dark:hover:text-cyan-400"
                                                     >

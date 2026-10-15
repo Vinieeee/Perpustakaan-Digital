@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { useMemo, useRef, useState } from "react";
 import useBooks from "../../hooks/useBooks";
 import useBorrowings from "../../hooks/useBorrowings";
@@ -102,77 +103,60 @@ function AdminBorrowingHistory() {
     const handleReturn = (borrowing) => {
         const borrowingId = String(borrowing.id);
 
-        // Hanya peminjaman berstatus Dipinjam yang dapat dikembalikan.
-        if (borrowing.status !== "Dipinjam") {
+        if (borrowing.status !== "Dipinjam") return;
+        if (processingRef.current.has(borrowingId)) return;
+
+        const book = books.find((item) => String(item.id) === String(borrowing.bookId));
+
+        if (!book) {
+            Swal.fire({ icon: 'error', title: 'Oops...', text: 'Data buku tidak ditemukan. Pengembalian dibatalkan.', background: '#0f172a', color: '#f8fafc', confirmButtonColor: '#0891b2' });
             return;
         }
 
-        if (processingRef.current.has(borrowingId)) {
+        const currentStock = Number(book.stok);
+
+        if (!Number.isFinite(currentStock) || currentStock < 0) {
+            Swal.fire({ icon: 'error', title: 'Oops...', text: 'Stok buku tidak valid. Periksa data buku terlebih dahulu.', background: '#0f172a', color: '#f8fafc', confirmButtonColor: '#0891b2' });
             return;
         }
 
-        processingRef.current.add(borrowingId);
+        Swal.fire({
+            title: 'Konfirmasi Pengembalian',
+            text: `Konfirmasi pengembalian buku "${borrowing.judul}" dari ${borrowing.namaPeminjam}? Stok buku akan bertambah 1.`,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#10b981',
+            cancelButtonColor: '#64748b',
+            confirmButtonText: 'Ya, Kembalikan',
+            cancelButtonText: 'Batal',
+            background: '#0f172a',
+            color: '#f8fafc'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                processingRef.current.add(borrowingId);
+                setProcessingIds((current) => [...current, borrowingId]);
 
-        setProcessingIds((current) => [
-            ...current,
-            borrowingId,
-        ]);
+                try {
+                    updateBook(book.id, { stok: currentStock + 1 });
+                    updateBorrowing(borrowing.id, {
+                        status: "Dikembalikan",
+                        tanggalKembali: new Date().toISOString(),
+                    });
 
-        try {
-            const book = books.find(
-                (item) =>
-                    String(item.id) ===
-                    String(borrowing.bookId)
-            );
-
-            if (!book) {
-                window.alert(
-                    "Data buku tidak ditemukan. Pengembalian dibatalkan."
-                );
-                return;
+                    Swal.fire({
+                        title: 'Berhasil!',
+                        text: 'Pengembalian berhasil dikonfirmasi. Stok buku telah diperbarui.',
+                        icon: 'success',
+                        background: '#0f172a',
+                        color: '#f8fafc',
+                        confirmButtonColor: '#0891b2'
+                    });
+                } finally {
+                    processingRef.current.delete(borrowingId);
+                    setProcessingIds((current) => current.filter((id) => id !== borrowingId));
+                }
             }
-
-            const confirmed = window.confirm(
-                `Konfirmasi pengembalian buku "${borrowing.judul}" dari ${borrowing.namaPeminjam}?\n\nStok buku akan bertambah 1.`
-            );
-
-            if (!confirmed) {
-                return;
-            }
-
-            const currentStock = Number(book.stok);
-
-            if (
-                !Number.isFinite(currentStock) ||
-                currentStock < 0
-            ) {
-                window.alert(
-                    "Stok buku tidak valid. Periksa data buku terlebih dahulu."
-                );
-                return;
-            }
-
-            // Tambahkan satu stok buku.
-            updateBook(book.id, {
-                stok: currentStock + 1,
-            });
-
-            // Catat tanggal dan ubah status peminjaman.
-            updateBorrowing(borrowing.id, {
-                status: "Dikembalikan",
-                tanggalKembali: new Date().toISOString(),
-            });
-
-            window.alert(
-                "Pengembalian berhasil dikonfirmasi. Stok buku telah diperbarui."
-            );
-        } finally {
-            processingRef.current.delete(borrowingId);
-
-            setProcessingIds((current) =>
-                current.filter((id) => id !== borrowingId)
-            );
-        }
+        });
     };
 
     return (

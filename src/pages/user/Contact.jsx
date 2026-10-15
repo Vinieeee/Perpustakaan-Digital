@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
+import Swal from "sweetalert2"; // Tambahkan SweetAlert2
 import useMessages from "../../hooks/useMessages";
-import { useUser } from "../../context/UserContext"; // Import context user
+import { useUser } from "../../context/UserContext";
 
 function Contact() {
     const { addMessage } = useMessages();
-    const { user } = useUser(); // Ambil data user yang sedang login
+    const { user } = useUser();
 
-    // Set nilai awal form, nama dan email langsung diisi dari data user
     const [form, setForm] = useState({
         nama: user?.nama || "",
         email: user?.email || "",
@@ -16,7 +16,6 @@ function Contact() {
 
     const [submitted, setSubmitted] = useState(false);
 
-    // Memastikan form terupdate jika data user baru dimuat (untuk berjaga-jaga)
     useEffect(() => {
         if (user) {
             setForm((current) => ({
@@ -44,13 +43,20 @@ function Contact() {
             !form.subject.trim() ||
             !form.message.trim()
         ) {
-            alert("Semua field wajib diisi.");
+            // Ganti alert bawaan dengan SweetAlert2
+            Swal.fire({
+                icon: 'warning',
+                title: 'Data Belum Lengkap!',
+                text: 'Semua field wajib diisi.',
+                background: '#0f172a',
+                color: '#f8fafc',
+                confirmButtonColor: '#0891b2'
+            });
             return;
         }
 
         addMessage(form);
 
-        // Hanya reset subject dan message, nama dan email tetap dipertahankan
         setForm((current) => ({
             ...current,
             subject: "",
@@ -127,7 +133,7 @@ function Contact() {
 
                                 <div className="flex gap-4">
                                     <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-800">
-                                        🕐
+                                        🕒
                                     </div>
                                     <div>
                                         <p className="text-sm font-bold text-white">Layanan</p>
@@ -162,7 +168,6 @@ function Contact() {
 
                         <form onSubmit={handleSubmit} className="space-y-5">
                             
-                            {/* Nama (Read-Only) */}
                             <div>
                                 <label htmlFor="nama" className="mb-2 block text-sm font-semibold text-slate-300">
                                     Nama
@@ -172,12 +177,11 @@ function Contact() {
                                     name="nama"
                                     type="text"
                                     value={form.nama}
-                                    readOnly // Membuat input tidak bisa diedit
+                                    readOnly
                                     className="w-full cursor-not-allowed rounded-xl border border-slate-800 bg-slate-950/50 px-4 py-3 text-sm text-slate-500 outline-none"
                                 />
                             </div>
 
-                            {/* Email (Read-Only) */}
                             <div>
                                 <label htmlFor="email" className="mb-2 block text-sm font-semibold text-slate-300">
                                     Email
@@ -187,12 +191,11 @@ function Contact() {
                                     name="email"
                                     type="email"
                                     value={form.email}
-                                    readOnly // Membuat input tidak bisa diedit
+                                    readOnly
                                     className="w-full cursor-not-allowed rounded-xl border border-slate-800 bg-slate-950/50 px-4 py-3 text-sm text-slate-500 outline-none"
                                 />
                             </div>
 
-                            {/* Subject */}
                             <div>
                                 <label htmlFor="subject" className="mb-2 block text-sm font-semibold text-slate-300">
                                     Subjek
@@ -204,12 +207,10 @@ function Contact() {
                                     value={form.subject}
                                     onChange={handleChange}
                                     placeholder="Subjek pesan"
-                                    required
                                     className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-white outline-none transition focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 placeholder:text-slate-500"
                                 />
                             </div>
 
-                            {/* Message */}
                             <div>
                                 <label htmlFor="message" className="mb-2 block text-sm font-semibold text-slate-300">
                                     Pesan
@@ -221,12 +222,10 @@ function Contact() {
                                     value={form.message}
                                     onChange={handleChange}
                                     placeholder="Tuliskan pesan kamu..."
-                                    required
                                     className="w-full resize-none rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm leading-6 text-white outline-none transition focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 placeholder:text-slate-500"
                                 />
                             </div>
 
-                            {/* Submit */}
                             <button
                                 type="submit"
                                 className="w-full rounded-xl bg-cyan-500 px-6 py-3.5 font-bold text-white shadow-lg shadow-cyan-500/10 transition duration-300 hover:-translate-y-0.5 hover:bg-cyan-400"

@@ -86,7 +86,7 @@ function BookCard({ book }) {
                             📍 Lokasi
                         </span>
                         <span className="max-w-[90px] truncate text-xs font-semibold text-slate-300">
-                            {book.lokasi || "Belum ditentukan"}
+                            {book.lokasiRak || "Belum ditentukan"}
                         </span>
                     </div>
 

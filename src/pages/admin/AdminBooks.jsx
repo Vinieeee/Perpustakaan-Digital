@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useMemo, useState } from "react";
+import Swal from "sweetalert2"; // Tambahan SweetAlert2
 import useBooks from "../../hooks/useBooks";
 
 function AdminBooks() {
@@ -45,20 +46,35 @@ function AdminBooks() {
     }, [books, search, category]);
 
     const handleDelete = (book) => {
-        const confirmed = window.confirm(
-            `Yakin ingin menghapus buku "${book.judul}"?`
-        );
+        Swal.fire({
+            title: 'Hapus Buku?',
+            text: `Yakin ingin menghapus buku "${book.judul}"?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ef4444',
+            cancelButtonColor: '#64748b',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal',
+            background: '#0f172a',
+            color: '#f8fafc'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteBook(book.id);
+                
+                if (selectedBook?.id === book.id) {
+                    setSelectedBook(null);
+                }
 
-        if (!confirmed) {
-            return;
-        }
-
-        deleteBook(book.id);
-        
-        // Jika buku yang dihapus sedang dibuka di modal, tutup modalnya
-        if (selectedBook?.id === book.id) {
-            setSelectedBook(null);
-        }
+                Swal.fire({
+                    title: 'Terhapus!',
+                    text: 'Buku berhasil dihapus.',
+                    icon: 'success',
+                    background: '#0f172a',
+                    color: '#f8fafc',
+                    confirmButtonColor: '#0891b2'
+                });
+            }
+        });
     };
 
     const resetFilter = () => {
@@ -226,12 +242,10 @@ function AdminBooks() {
                             key={book.id}
                             className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-sm transition hover:border-cyan-800 hover:shadow-xl hover:shadow-cyan-900/20"
                         >
-                            {/* Area yang bisa diklik untuk membuka Modal Detail */}
                             <div 
                                 className="flex flex-1 flex-col cursor-pointer"
                                 onClick={() => setSelectedBook(book)}
                             >
-                                {/* Gambar Cover & Badges */}
                                 <div className="relative aspect-[2/3] w-full overflow-hidden bg-slate-950">
                                     {book.cover ? (
                                         <img
@@ -257,7 +271,6 @@ function AdminBooks() {
                                     </div>
                                 </div>
 
-                                {/* Informasi Buku */}
                                 <div className="flex flex-1 flex-col p-4">
                                     <span className="mb-2 w-fit rounded-full bg-cyan-950/50 px-2.5 py-1 text-[10px] font-bold text-cyan-400">
                                         {book.kategori || "Umum"}
@@ -278,8 +291,6 @@ function AdminBooks() {
                                 </div>
                             </div>
 
-                            {/* Aksi (Edit & Hapus) */}
-                            {/* Tambahkan e.stopPropagation() agar saat diklik tidak membuka modal detail */}
                             <div className="grid grid-cols-2 gap-2 border-t border-slate-800 p-3 bg-slate-950/50 z-10">
                                 <Link
                                     to={`/admin/buku/edit/${book.id}`}
@@ -309,13 +320,12 @@ function AdminBooks() {
             {selectedBook && (
                 <div 
                     className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm transition-all"
-                    onClick={() => setSelectedBook(null)} // Tutup modal jika klik background
+                    onClick={() => setSelectedBook(null)}
                 >
                     <div 
                         className="relative flex w-full max-w-4xl max-h-[90vh] flex-col overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 shadow-2xl md:flex-row"
-                        onClick={(e) => e.stopPropagation()} // Hindari modal tertutup jika isinya diklik
+                        onClick={(e) => e.stopPropagation()}
                     >
-                        {/* Tombol Silang (Close) */}
                         <button 
                             onClick={() => setSelectedBook(null)}
                             className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-slate-800/80 text-slate-300 transition hover:bg-slate-700 hover:text-white"
@@ -323,7 +333,6 @@ function AdminBooks() {
                             ✕
                         </button>
 
-                        {/* Cover Image di Modal */}
                         <div className="relative h-64 w-full shrink-0 bg-slate-950 md:h-auto md:w-2/5">
                             {selectedBook.cover ? (
                                 <img
@@ -337,7 +346,6 @@ function AdminBooks() {
                                     📚
                                 </div>
                             )}
-                            {/* Overlay info stok & rak di gambar khusus mobile */}
                             <div className="absolute bottom-4 left-4 flex gap-2 md:hidden">
                                 <span className="rounded-lg bg-black/70 px-3 py-1.5 text-xs font-bold text-white backdrop-blur-md">
                                     Rak: {selectedBook.lokasiRak || "-"}
@@ -348,7 +356,6 @@ function AdminBooks() {
                             </div>
                         </div>
 
-                        {/* Detail Text di Modal */}
                         <div className="flex flex-1 flex-col overflow-y-auto p-6 md:p-8">
                             <div className="mb-4 flex flex-wrap gap-2">
                                 <span className="rounded-full bg-cyan-950/60 px-3 py-1 text-xs font-bold text-cyan-400 border border-cyan-900/50">
@@ -385,7 +392,6 @@ function AdminBooks() {
                                     <p className="mt-1 font-semibold text-slate-200">{selectedBook.identifier || "-"}</p>
                                 </div>
                                 <div className="hidden md:block">
-                                    {/* Tampil di desktop */}
                                     <p className="text-xs font-bold uppercase tracking-wider text-slate-500">Ketersediaan</p>
                                     <p className="mt-1 font-semibold text-slate-200">
                                         Rak <span className="text-cyan-400">{selectedBook.lokasiRak || "-"}</span> 
@@ -403,7 +409,6 @@ function AdminBooks() {
                                 </p>
                             </div>
 
-                            {/* Aksi di dalam Modal */}
                             <div className="mt-8 flex gap-3 pt-4">
                                 <Link
                                     to={`/admin/buku/edit/${selectedBook.id}`}

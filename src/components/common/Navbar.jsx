@@ -10,6 +10,10 @@ function Navbar() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
 
+    // Ambil penanda role dari local storage untuk mengecek apakah ini akun Guest
+    const userRole = localStorage.getItem("userRole");
+    const isGuest = userRole === "guest";
+
     // Menutup dropdown jika user melakukan klik di luar area dropdown
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -36,6 +40,8 @@ function Navbar() {
     `;
 
     const handleLogout = () => {
+        // Hapus penanda guest jika ada
+        localStorage.removeItem("userRole");
         logout();
         setIsDropdownOpen(false);
         navigate("/login");
@@ -70,7 +76,8 @@ function Navbar() {
                         Galeri Buku
                     </NavLink>
 
-                    {isLoggedIn && (
+                    {/* Riwayat hanya tampil jika bukan GUEST */}
+                    {isLoggedIn && !isGuest && (
                         <NavLink
                             to="/riwayat-peminjaman"
                             className={getNavClass}
@@ -89,39 +96,63 @@ function Navbar() {
                     {/* Bagian Akun / Login */}
                     {isLoggedIn ? (
                         <div className="relative ml-2" ref={dropdownRef}>
-                            {/* Tombol Avatar Profil dengan warna lebih terang */}
+                            {/* Tombol Avatar Profil */}
                             <button
                                 type="button"
                                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                className="flex h-9 w-9 items-center justify-center rounded-full bg-cyan-500 text-lg text-white shadow-md transition hover:bg-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-slate-950"
+                                className={`flex h-9 w-9 items-center justify-center rounded-full text-lg shadow-md transition focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-slate-950 ${
+                                    isGuest 
+                                        ? "bg-slate-700 text-slate-300 hover:bg-slate-600" // Warna untuk Guest
+                                        : "bg-cyan-500 text-white hover:bg-cyan-400"        // Warna untuk Member
+                                }`}
                             >
-                                👤
+                                {isGuest ? "👤" : "👨‍🎓"}
                             </button>
 
                             {/* Dropdown Menu (Pop-up Mini) */}
                             {isDropdownOpen && (
                                 <div className="absolute right-0 top-full mt-2 w-56 rounded-xl border border-slate-700 bg-slate-900 p-2 shadow-xl z-50">
                                     
-                                    {/* Info User */}
-                                    <div className="border-b border-slate-800 px-3 py-3">
-                                        <p className="text-sm font-bold text-white truncate">
-                                            {user?.nama || "Pengguna"}
-                                        </p>
-                                        <p className="text-xs text-slate-400 truncate mt-0.5">
-                                            {user?.email || "email@tidaktersedia.com"}
-                                        </p>
-                                    </div>
+                                    {isGuest ? (
+                                        // --- TAMPILAN JIKA GUEST ---
+                                        <div className="px-3 py-3 text-center">
+                                            <p className="text-sm font-bold text-white">Mode Tamu</p>
+                                            <p className="mt-1 text-xs text-slate-400">
+                                                Kamu belum login. Fitur pinjam buku dan riwayat tidak tersedia.
+                                            </p>
+                                            <div className="mt-4 border-t border-slate-800 pt-3">
+                                                <button
+                                                    type="button"
+                                                    onClick={handleLogout}
+                                                    className="w-full rounded-lg bg-cyan-600 px-3 py-2 text-sm font-bold text-white transition hover:bg-cyan-500"
+                                                >
+                                                    Login Sekarang
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        // --- TAMPILAN JIKA USER AKTIF ---
+                                        <>
+                                            <div className="border-b border-slate-800 px-3 py-3">
+                                                <p className="text-sm font-bold text-white truncate">
+                                                    {user?.nama || "Pengguna"}
+                                                </p>
+                                                <p className="text-xs text-slate-400 truncate mt-0.5">
+                                                    {user?.email || "email@tidaktersedia.com"}
+                                                </p>
+                                            </div>
 
-                                    {/* Tombol Logout */}
-                                    <div className="pt-2">
-                                        <button
-                                            type="button"
-                                            onClick={handleLogout}
-                                            className="w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-red-400 transition hover:bg-red-500/10"
-                                        >
-                                            Keluar
-                                        </button>
-                                    </div>
+                                            <div className="pt-2">
+                                                <button
+                                                    type="button"
+                                                    onClick={handleLogout}
+                                                    className="w-full rounded-lg px-3 py-2 text-left text-sm font-semibold text-red-400 transition hover:bg-red-500/10"
+                                                >
+                                                    Keluar
+                                                </button>
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             )}
                         </div>
